@@ -67,6 +67,7 @@ export default {
   }
 
   &-description {
+    line-height: 1.2;
     text-align: center;
   }
 

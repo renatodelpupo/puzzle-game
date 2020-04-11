@@ -72,7 +72,7 @@ export default {
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 50px auto;
+    margin: 50px auto 30px;
   }
 
   &-button {
