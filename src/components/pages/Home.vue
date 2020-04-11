@@ -7,11 +7,21 @@
     <main class="app-main">
       <rule-list :rules="rules" />
     </main>
+    <footer class="app-footer">
+      <navigation
+        :puzzleNumber="puzzleNumber"
+        :rulesAmount="rulesAmount"
+        @nextGame="nextGame()"
+        @prevGame="prevGame()"
+      />
+    </footer>
   </div>
 </template>
 
 <script>
+import rulesBase from '../../data/rules.json'
 import AnswerBox from '../molecules/AnswerBox'
+import Navigation from '../molecules/Navigation'
 import RuleList from '../organisms/RuleList'
 
 export default {
@@ -19,49 +29,38 @@ export default {
 
   components: {
     AnswerBox,
+    Navigation,
     RuleList
   },
 
   data: () => ({
-    rules: [
-      {
-        correctNumbers: 2,
-        correctPositions: 1,
-        numbers: [5, 2, 6, 9]
-      },
-      {
-        correctNumbers: 1,
-        correctPositions: 0,
-        numbers: [9, 7, 4, 5]
-      },
-      {
-        correctNumbers: 3,
-        correctPositions: 0,
-        numbers: [2, 1, 7, 3]
-      },
-      {
-        correctNumbers: 1,
-        correctPositions: 1,
-        numbers: [1, 4, 8, 7]
-      },
-      {
-        correctNumbers: 2,
-        correctPositions: 0,
-        numbers: [7, 3, 8, 1]
-      },
-      {
-        correctNumbers: 1,
-        correctPositions: 1,
-        numbers: [9, 2, 1, 8]
-      },
-      {
-        correctNumbers: 2,
-        correctPositions: 0,
-        numbers: [4, 6, 7, 9]
-      }
-    ],
+    puzzleNumber: 1,
     success: null
-  })
+  }),
+
+  computed: {
+    rules() {
+      return rulesBase[this.puzzleNumber - 1]
+    },
+
+    rulesAmount() {
+      return rulesBase.length
+    }
+  },
+
+  methods: {
+    nextGame() {
+      if (this.puzzleNumber < this.rulesAmount) {
+        this.puzzleNumber = this.puzzleNumber + 1
+      }
+    },
+
+    prevGame() {
+      if (this.puzzleNumber > 1) {
+        this.puzzleNumber = this.puzzleNumber - 1
+      }
+    }
+  }
 }
 </script>
 
@@ -98,11 +97,12 @@ h1 {
   &-home {
     display: flex;
     flex-direction: column;
-    max-height: 100vh;
+    height: 100vh;
     overflow: hidden;
   }
 
   &-main {
+    flex: 1;
     overflow: hidden scroll;
   }
 }

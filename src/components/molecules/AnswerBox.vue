@@ -38,6 +38,12 @@ export default {
     success: null
   }),
 
+  watch: {
+    rules() {
+      this.mountInitialAttempt()
+    }
+  },
+
   mounted() {
     this.mountInitialAttempt()
   },
@@ -56,6 +62,7 @@ export default {
     },
 
     mountInitialAttempt() {
+      this.attempt = []
       for (let i = 0; i < this.rules[0].numbers.length; i++) {
         this.attempt.push(0)
       }
@@ -87,9 +94,7 @@ export default {
 
       this.success = !hasError
       this.answered = true
-      setTimeout(() => {
-        this.answered = false
-      }, 3000)
+      setTimeout(() => { this.answered = false }, 3000)
     }
   }
 }
