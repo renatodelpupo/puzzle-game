@@ -61,9 +61,9 @@ export default {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    margin: 15px;
-    padding: 15px;
-    width: 250px;
+    margin: 5px 0;
+    padding: 10px;
+    width: calc(50% - 5px);
   }
 
   &-description {
@@ -75,8 +75,8 @@ export default {
     background-color: #383838;
     border-radius: 5px;
     display: inline-flex;
-    margin: 0 10px;
-    padding: 10px 12px;
+    margin: 0 5px;
+    padding: 5px 6px 3px;
 
     &:first-child {
       margin-left: 0;
@@ -88,7 +88,7 @@ export default {
 
     &-wrap {
       display: flex;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
   }
 }

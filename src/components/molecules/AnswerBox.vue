@@ -87,6 +87,9 @@ export default {
 
       this.success = !hasError
       this.answered = true
+      setTimeout(() => {
+        this.answered = false
+      }, 3000)
     }
   }
 }
@@ -98,17 +101,15 @@ export default {
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 40px auto 20px;
+    margin: 0 auto 10px;
   }
 
   &-button {
     background: #007acc;
     border: none;
-    border-radius: 2px;
     color: #ffffff;
     font-size: 14px;
-    margin-top: 15px;
-    padding: 10px 15px;
+    padding: 5px 10px;
     text-shadow: none;
   }
 

@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div class="rule-list">
-      <rule-box v-for="rule in rules" :rule="rule" :key="rule.numbers.toString()" />
-    </div>
+  <div class="rule-list">
+    <rule-box v-for="rule in rules" :rule="rule" :key="rule.numbers.toString()" />
   </div>
 </template>
 
@@ -29,7 +27,7 @@ export default {
 .rule-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin: -15px;
+  justify-content: space-between;
+  margin: 20px;
 }
 </style>

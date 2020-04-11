@@ -27,6 +27,8 @@ export default {
   &-flag {
     color: #ffffff;
     padding: 10px 40px;
+    text-align: center;
+    width: 100%;
 
     &-failure {
       background-color: #e17833;

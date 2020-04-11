@@ -1,9 +1,13 @@
 <template>
-  <main>
-    <h1>Solve the puzzle</h1>
-    <rule-list :rules="rules" />
-    <answer-box :rules="rules" />
-  </main>
+  <div class="app-home">
+    <header class="app-header">
+      <h1>Solve the puzzle</h1>
+      <answer-box :rules="rules" />
+    </header>
+    <main class="app-main">
+      <rule-list :rules="rules" />
+    </main>
+  </div>
 </template>
 
 <script>
@@ -61,7 +65,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 * {
   box-sizing: border-box;
 }
@@ -70,12 +74,36 @@ body {
   background-color: #1e1e1e;
   color: #cccccc;
   font-family: sans-serif;
-  font-size: 14px;
-  padding: 25px;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
 }
 
 h1,
 h2 {
   text-align: center;
+}
+
+h1 {
+  font-size: 16px;
+}
+
+.app {
+
+  &-header {
+    background-color: #252525;
+    padding: 10px 20px;
+  }
+
+  &-home {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+
+  &-main {
+    overflow: hidden scroll;
+  }
 }
 </style>
