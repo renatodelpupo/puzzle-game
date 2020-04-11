@@ -45,7 +45,8 @@ export default {
         correctPositions: 0,
         numbers: [7, 8, 4]
       }
-    ]
+    ],
+    success: null
   })
 }
 </script>

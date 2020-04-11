@@ -1,14 +1,23 @@
 <template>
-  <div class="answer-box">
-    <label class="answer-label" for="answer">Type your answer here:</label>
-    <input class="answer-input" id="answer" value type="number" min="1" step="1" required />
-    <button class="answer-button" @click="test()">Test!</button>
+  <div>
+    <div class="answer-box">
+      <label class="answer-label" for="answer">Type your answer here:</label>
+      <input class="answer-input" id="answer" value type="number" min="1" step="1" required />
+      <button class="answer-button" @click="test()">Test!</button>
+    </div>
+    <feedback-box v-show="answered" :success="success" />
   </div>
 </template>
 
 <script>
+import FeedbackBox from '../molecules/FeedbackBox'
+
 export default {
   name: 'AnswerBox',
+
+  components: {
+    FeedbackBox
+  },
 
   props: {
     rules: {
@@ -17,13 +26,18 @@ export default {
     }
   },
 
+  data: () => ({
+    answered: false,
+    feedbackMessages: [],
+    success: null
+  }),
+
   methods: {
     test() {
       const _inputValue = document.querySelector('#answer').value
       const attempt = _inputValue.toString().split('').map(Number)
-      let errors = 0
-
-      console.group('Puzzle')
+      let hasError = false
+      this.feedbackMessages = []
 
       this.rules.forEach((rule, index) => {
         const numbers = rule.numbers
@@ -37,18 +51,16 @@ export default {
         const numbersCorrect = verifyNumbers.length === rule.correctNumbers
         const positionsCorrect = verifyPositions.length === rule.correctPositions
 
-        numbersCorrect && positionsCorrect
-          ? console.log(`Rule ${ruleId} correct`)
-          : console.log(`Rule ${ruleId} incorrect`)
-
-        if (!numbersCorrect || !positionsCorrect) errors++
+        if (numbersCorrect && positionsCorrect) {
+          this.feedbackMessages.push(`Rule ${ruleId} correct`)
+        } else {
+          this.feedbackMessages.push(`Rule ${ruleId} incorrect`)
+          hasError = true
+        }
       })
 
-      errors > 0
-        ? console.log('Puzzle has an error')
-        : console.log('Puzzle successfully verified')
-
-      console.groupEnd()
+      this.success = !hasError
+      this.answered = true
     }
   }
 }
