@@ -39,7 +39,7 @@ export default {
   methods: {
     loadingSafeTimeout() {
       this.loading = true
-      setTimeout(() => { this.loading = false }, 2000)
+      setTimeout(() => { this.loading = false }, 1000)
     },
 
     next() {

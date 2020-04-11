@@ -55,6 +55,60 @@
   ],
   [
     {
+      "correctNumbers": 1,
+      "correctPositions": 0,
+      "numbers": [7, 2, 3]
+    },
+    {
+      "correctNumbers": 1,
+      "correctPositions": 1,
+      "numbers": [7, 5, 9]
+    },
+    {
+      "correctNumbers": 2,
+      "correctPositions": 0,
+      "numbers": [9, 1, 7]
+    },
+    {
+      "correctNumbers": 1,
+      "correctPositions": 0,
+      "numbers": [4, 5, 1]
+    },
+    {
+      "correctNumbers": 0,
+      "correctPositions": 0,
+      "numbers": [4, 6, 5]
+    }
+  ],
+  [
+    {
+      "correctNumbers": 1,
+      "correctPositions": 1,
+      "numbers": [6, 8, 2]
+    },
+    {
+      "correctNumbers": 1,
+      "correctPositions": 0,
+      "numbers": [6, 4, 5]
+    },
+    {
+      "correctNumbers": 1,
+      "correctPositions": 0,
+      "numbers": [7, 8, 0]
+    },
+    {
+      "correctNumbers": 2,
+      "correctPositions": 0,
+      "numbers": [2, 0, 6]
+    },
+    {
+      "correctNumbers": 0,
+      "correctPositions": 0,
+      "numbers": [7, 3, 8]
+    }
+  ],
+  [
+    {
       "correctNumbers": 2,
       "correctPositions": 1,
       "numbers": [5, 2, 6, 9]
