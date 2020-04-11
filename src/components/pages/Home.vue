@@ -21,29 +21,39 @@ export default {
   data: () => ({
     rules: [
       {
-        correctNumbers: 1,
+        correctNumbers: 2,
         correctPositions: 1,
-        numbers: [2, 8, 9]
+        numbers: [5, 2, 6, 9]
       },
       {
         correctNumbers: 1,
         correctPositions: 0,
-        numbers: [2, 1, 5]
+        numbers: [9, 7, 4, 5]
+      },
+      {
+        correctNumbers: 3,
+        correctPositions: 0,
+        numbers: [2, 1, 7, 3]
+      },
+      {
+        correctNumbers: 1,
+        correctPositions: 1,
+        numbers: [1, 4, 8, 7]
       },
       {
         correctNumbers: 2,
         correctPositions: 0,
-        numbers: [9, 4, 2]
-      },
-      {
-        correctNumbers: 0,
-        correctPositions: 0,
-        numbers: [7, 3, 8]
+        numbers: [7, 3, 8, 1]
       },
       {
         correctNumbers: 1,
+        correctPositions: 1,
+        numbers: [9, 2, 1, 8]
+      },
+      {
+        correctNumbers: 2,
         correctPositions: 0,
-        numbers: [7, 8, 4]
+        numbers: [4, 6, 7, 9]
       }
     ],
     success: null
