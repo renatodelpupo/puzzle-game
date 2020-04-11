@@ -16,35 +16,12 @@ export default {
     RuleBox
   },
 
-  data: () => ({
-    rules: [
-      {
-        correctNumbers: 1,
-        correctPositions: 1,
-        numbers: [2, 8, 9]
-      },
-      {
-        correctNumbers: 1,
-        correctPositions: 0,
-        numbers: [2, 1, 5]
-      },
-      {
-        correctNumbers: 2,
-        correctPositions: 0,
-        numbers: [9, 4, 2]
-      },
-      {
-        correctNumbers: 0,
-        correctPositions: 0,
-        numbers: [7, 3, 8]
-      },
-      {
-        correctNumbers: 1,
-        correctPositions: 0,
-        numbers: [7, 8, 4]
-      }
-    ]
-  })
+  props: {
+    rules: {
+      required: true,
+      type: Array
+    }
+  }
 }
 </script>
 

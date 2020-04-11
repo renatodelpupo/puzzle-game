@@ -9,6 +9,7 @@ import Home from './components/pages/Home'
 
 export default {
   name: 'App',
+
   components: {
     Home
   }
