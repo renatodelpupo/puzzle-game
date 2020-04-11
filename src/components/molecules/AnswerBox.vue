@@ -1,8 +1,13 @@
 <template>
   <div>
     <div class="answer-box">
-      <label class="answer-label" for="answer">Type your answer here:</label>
-      <input class="answer-input" id="answer" value type="number" min="1" step="1" required />
+      <div class="answer-numbers">
+        <div v-for="(number, index) in attempt" :key="index" class="answer-number-wrap">
+          <span class="answer-up" @click="increase(index)">❮</span>
+          <span class="answer-number" v-text="number" />
+          <span class="answer-down" @click="decrease(index)">❯</span>
+        </div>
+      </div>
       <button class="answer-button" @click="test()">Test!</button>
     </div>
     <feedback-box v-show="answered" :success="success" />
@@ -28,14 +33,35 @@ export default {
 
   data: () => ({
     answered: false,
+    attempt: [],
     feedbackMessages: [],
     success: null
   }),
 
+  mounted() {
+    this.mountInitialAttempt()
+  },
+
   methods: {
+    decrease(index) {
+      this.attempt[index] > 0
+        ? this.$set(this.attempt, index, this.attempt[index] - 1)
+        : this.$set(this.attempt, index, 9)
+    },
+
+    increase(index) {
+      this.attempt[index] < 9
+        ? this.$set(this.attempt, index, this.attempt[index] + 1)
+        : this.$set(this.attempt, index, 0)
+    },
+
+    mountInitialAttempt() {
+      for (let i = 0; i < this.rules[0].numbers.length; i++) {
+        this.attempt.push(0)
+      }
+    },
+
     test() {
-      const _inputValue = document.querySelector('#answer').value
-      const attempt = _inputValue.toString().split('').map(Number)
       let hasError = false
       this.feedbackMessages = []
 
@@ -43,8 +69,8 @@ export default {
         const numbers = rule.numbers
         const ruleId = index + 1
 
-        const verifyNumbers = attempt.filter(attemptItem => numbers.includes(attemptItem))
-        const verifyPositions = attempt.filter((attemptItem, attemptIndex) => {
+        const verifyNumbers = this.attempt.filter(attemptItem => numbers.includes(attemptItem))
+        const verifyPositions = this.attempt.filter((attemptItem, attemptIndex) => {
           return numbers.includes(attemptItem) && numbers.indexOf(attemptItem) === attemptIndex
         })
 
@@ -72,13 +98,13 @@ export default {
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 50px auto 30px;
+    margin: 40px auto 20px;
   }
 
   &-button {
     background: #007acc;
     border: none;
-    border-radius: 5px;
+    border-radius: 2px;
     color: #ffffff;
     font-size: 14px;
     margin-top: 15px;
@@ -86,15 +112,37 @@ export default {
     text-shadow: none;
   }
 
-  &-input {
-    background-color: #858585 !important;
-    border: none !important;
-    color: #1e1e1e !important;
-    line-height: 2em;
+  &-down,
+  &-up {
+    cursor: pointer;
+    transform: rotate(90deg);
   }
 
-  &-label {
-    margin-bottom: 15px;
+  &-number {
+    background-color: #383838;
+    border-radius: 5px;
+    display: inline-flex;
+    margin: 5px 10px;
+    padding: 10px 12px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &-wrap {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+  }
+
+  &-numbers {
+    display: flex;
   }
 }
 </style>
