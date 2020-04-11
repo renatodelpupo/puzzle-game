@@ -30,7 +30,7 @@ export default {
 
     descriptionNumbers() {
       if (this.rule.correctNumbers === 0) return 'Nothing is correct'
-      if (this.rule.correctNumbers === 1) return 'A correct number'
+      if (this.rule.correctNumbers === 1) return 'One correct number'
       if (this.rule.correctNumbers === 2) return 'Two correct numbers'
       if (this.rule.correctNumbers === 3) return 'Three correct numbers'
       if (this.rule.correctNumbers === 4) return 'Four correct numbers'
@@ -41,6 +41,11 @@ export default {
       if (!this.rule.correctNumbers) return ''
       if (this.rule.correctPositions === 0) return ', but in the wrong place'
       if (this.rule.correctNumbers === this.rule.correctPositions) return ' in the correct place'
+
+      if (this.rule.correctPositions === 1) return '. One in the correct place'
+      if (this.rule.correctPositions === 2) return '. Two in the correct place'
+      if (this.rule.correctPositions === 3) return '. Three in the correct place'
+      if (this.rule.correctPositions === 3) return '. Four in the correct place'
 
       return ''
     }
