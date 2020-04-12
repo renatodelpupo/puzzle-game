@@ -42,6 +42,11 @@ export default {
   }),
 
   computed: {
+    persistedPuzzleNumber() {
+      const persistedPuzzleNumber = localStorage.getItem('puzzleNumber')
+      return persistedPuzzleNumber ? Number(persistedPuzzleNumber) : 1
+    },
+
     rules() {
       return rulesBase[this.puzzleNumber - 1]
     },
@@ -51,9 +56,23 @@ export default {
     }
   },
 
+  watch: {
+    puzzleNumber(value) {
+      if (value > this.persistedPuzzleNumber) localStorage.setItem('puzzleNumber', value)
+    }
+  },
+
+  mounted() {
+    this.checkPersistedPuzzleNumber()
+  },
+
   methods: {
     attemptUpdate(value) {
       this.attempt = value
+    },
+
+    checkPersistedPuzzleNumber() {
+      if (this.persistedPuzzleNumber > this.puzzleNumber) this.puzzleNumber = this.persistedPuzzleNumber
     },
 
     nextGame() {
