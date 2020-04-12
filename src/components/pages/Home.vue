@@ -16,9 +16,10 @@
     </main>
     <Footer
       :attempt="attempt"
+      :gameEnded="gameEnded"
       :puzzleNumber="puzzleNumber"
       :rules="rules"
-      :rulesAmount="rulesAmount"
+      @correctAnswer="newCorrectAnswer"
       @nextGame="nextGame()"
     />
   </div>
@@ -43,17 +44,18 @@ export default {
 
   data: () => ({
     attempt: [],
+    correctAnswers: 0,
     puzzleNumber: 1
   }),
 
   computed: {
     gameEnded() {
-      return this.puzzleNumber === this.rulesAmount
+      return this.correctAnswers === this.rulesAmount
     },
 
-    persistedPuzzleNumber() {
-      const persistedPuzzleNumber = localStorage.getItem('puzzleNumber')
-      return persistedPuzzleNumber ? Number(persistedPuzzleNumber) : 1
+    persistedCorrectAnswers() {
+      const persistedCorrectAnswers = localStorage.getItem('correctAnswers')
+      return persistedCorrectAnswers ? Number(persistedCorrectAnswers) : 0
     },
 
     rules() {
@@ -66,13 +68,13 @@ export default {
   },
 
   watch: {
-    puzzleNumber(value) {
-      if (value > this.persistedPuzzleNumber) localStorage.setItem('puzzleNumber', value)
+    correctAnswers(value) {
+      if (value > this.persistedCorrectAnswers) localStorage.setItem('correctAnswers', value)
     }
   },
 
   mounted() {
-    this.checkPersistedPuzzleNumber()
+    this.checkPersistedCorrectAnswers()
   },
 
   methods: {
@@ -80,8 +82,15 @@ export default {
       this.attempt = value
     },
 
-    checkPersistedPuzzleNumber() {
-      if (this.persistedPuzzleNumber > this.puzzleNumber) this.puzzleNumber = this.persistedPuzzleNumber
+    checkPersistedCorrectAnswers() {
+      if (this.persistedCorrectAnswers > this.correctAnswers) {
+        this.correctAnswers = this.persistedCorrectAnswers
+        this.puzzleNumber = this.correctAnswers + 1
+      }
+    },
+
+    newCorrectAnswer() {
+      this.correctAnswers = this.correctAnswers + 1
     },
 
     nextGame() {
@@ -91,8 +100,9 @@ export default {
     },
 
     restartGame() {
+      this.correctAnswers = 0
       this.puzzleNumber = 1
-      localStorage.setItem('puzzleNumber', 1)
+      localStorage.setItem('correctAnswers', 0)
     }
   }
 }

@@ -25,6 +25,11 @@ export default {
       type: Array
     },
 
+    gameEnded: {
+      required: true,
+      type: Boolean
+    },
+
     puzzleNumber: {
       required: true,
       type: Number
@@ -33,11 +38,6 @@ export default {
     rules: {
       required: true,
       type: Array
-    },
-
-    rulesAmount: {
-      required: true,
-      type: Number
     }
   },
 
@@ -46,9 +46,9 @@ export default {
     status: 'default'
   }),
 
-  computed: {
-    gameEnded() {
-      return this.puzzleNumber === this.rulesAmount
+  watch: {
+    gameEnded(value) {
+      if (value) this.status = 'default'
     }
   },
 
@@ -87,6 +87,7 @@ export default {
         setTimeout(() => { this.status = 'default' }, 2000)
       } else {
         this.status = 'success'
+        this.$emit('correctAnswer')
       }
     }
   }
