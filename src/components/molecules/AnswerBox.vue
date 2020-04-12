@@ -100,10 +100,9 @@ export default {
     border-radius: 5px;
     display: inline-flex;
     font-size: 36px;
-    height: 45px;
+    height: 50px;
     justify-content: center;
     margin: 5px 0;
-    padding-top: 5px;
     width: 75px;
 
     &:first-child {

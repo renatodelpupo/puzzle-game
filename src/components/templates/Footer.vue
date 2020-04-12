@@ -112,7 +112,7 @@ export default {
       align-items: center;
       display: flex;
       justify-content: center;
-      padding: 15px 0 10px;
+      padding: 15px 0;
     }
   }
 

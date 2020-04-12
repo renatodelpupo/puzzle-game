@@ -76,7 +76,7 @@ export default {
     border-radius: 5px;
     display: inline-flex;
     margin: 0 5px;
-    padding: 5px 6px 3px;
+    padding: 5px 6px;
 
     &:first-child {
       margin-left: 0;

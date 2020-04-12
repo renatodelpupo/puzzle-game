@@ -97,11 +97,6 @@ body {
   padding: 0;
 }
 
-h1,
-h2 {
-  text-align: center;
-}
-
 .app {
 
   &-header {
@@ -113,6 +108,7 @@ h2 {
     h1 {
       font-size: 18px;
       margin: 0;
+      text-align: center;
     }
   }
 
