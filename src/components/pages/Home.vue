@@ -9,6 +9,10 @@
         :rules="rules"
         @attempt="attemptUpdate"
       />
+      <modal-congrats
+        v-if="gameEnded"
+        @restartGame="restartGame"
+      />
     </main>
     <Footer
       :attempt="attempt"
@@ -24,6 +28,7 @@
 import rulesBase from '../../data/rules.json'
 import AnswerBox from '../molecules/AnswerBox'
 import Footer from '../templates/Footer'
+import ModalCongrats from '../molecules/modals/ModalCongrats'
 import RuleList from '../organisms/RuleList'
 
 export default {
@@ -32,6 +37,7 @@ export default {
   components: {
     AnswerBox,
     Footer,
+    ModalCongrats,
     RuleList
   },
 
@@ -41,6 +47,10 @@ export default {
   }),
 
   computed: {
+    gameEnded() {
+      return this.puzzleNumber === this.rulesAmount
+    },
+
     persistedPuzzleNumber() {
       const persistedPuzzleNumber = localStorage.getItem('puzzleNumber')
       return persistedPuzzleNumber ? Number(persistedPuzzleNumber) : 1
@@ -78,25 +88,17 @@ export default {
       if (this.puzzleNumber < this.rulesAmount) {
         this.puzzleNumber = this.puzzleNumber + 1
       }
+    },
+
+    restartGame() {
+      this.puzzleNumber = 1
+      localStorage.setItem('puzzleNumber', 1)
     }
   }
 }
 </script>
 
 <style lang="scss">
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #1e1e1e;
-  color: #cccccc;
-  font-family: sans-serif;
-  font-size: 14px;
-  margin: 0;
-  padding: 0;
-}
-
 .app {
 
   &-header {
