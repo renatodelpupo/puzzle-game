@@ -2,26 +2,29 @@
   <div class="app-home">
     <header class="app-header">
       <h1>Solve the puzzle</h1>
-      <answer-box :rules="rules" />
     </header>
     <main class="app-main">
       <rule-list :rules="rules" />
-    </main>
-    <footer class="app-footer">
-      <navigation
-        :puzzleNumber="puzzleNumber"
-        :rulesAmount="rulesAmount"
-        @nextGame="nextGame()"
-        @prevGame="prevGame()"
+      <answer-box
+        :rules="rules"
+        @attempt="attemptUpdate"
       />
-    </footer>
+    </main>
+    <Footer
+      :attempt="attempt"
+      :puzzleNumber="puzzleNumber"
+      :rules="rules"
+      :rulesAmount="rulesAmount"
+      @nextGame="nextGame()"
+      @prevGame="prevGame()"
+    />
   </div>
 </template>
 
 <script>
 import rulesBase from '../../data/rules.json'
 import AnswerBox from '../molecules/AnswerBox'
-import Navigation from '../molecules/Navigation'
+import Footer from '../templates/Footer'
 import RuleList from '../organisms/RuleList'
 
 export default {
@@ -29,13 +32,13 @@ export default {
 
   components: {
     AnswerBox,
-    Navigation,
+    Footer,
     RuleList
   },
 
   data: () => ({
-    puzzleNumber: 1,
-    success: null
+    attempt: [],
+    puzzleNumber: 1
   }),
 
   computed: {
@@ -49,6 +52,10 @@ export default {
   },
 
   methods: {
+    attemptUpdate(value) {
+      this.attempt = value
+    },
+
     nextGame() {
       if (this.puzzleNumber < this.rulesAmount) {
         this.puzzleNumber = this.puzzleNumber + 1
@@ -73,7 +80,7 @@ body {
   background-color: #1e1e1e;
   color: #cccccc;
   font-family: sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   margin: 0;
   padding: 0;
 }
@@ -83,15 +90,18 @@ h2 {
   text-align: center;
 }
 
-h1 {
-  font-size: 16px;
-}
-
 .app {
 
   &-header {
-    background-color: #252525;
+    background-color: #383838;
+    color: #ccc;
+    font-size: 18px;
     padding: 10px 20px;
+
+    h1 {
+      font-size: 18px;
+      margin: 0;
+    }
   }
 
   &-home {
@@ -102,7 +112,10 @@ h1 {
   }
 
   &-main {
+    display: flex;
     flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
     overflow: hidden scroll;
   }
 }

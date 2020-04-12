@@ -28,6 +28,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  overflow: hidden scroll;
   margin: 20px;
 }
 </style>

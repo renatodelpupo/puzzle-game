@@ -1,28 +1,18 @@
 <template>
-  <div>
-    <div class="answer-box">
-      <div class="answer-numbers">
-        <div v-for="(number, index) in attempt" :key="index" class="answer-number-wrap">
-          <span class="answer-up" @click="increase(index)">❮</span>
-          <span class="answer-number" v-text="number" />
-          <span class="answer-down" @click="decrease(index)">❯</span>
-        </div>
+  <div class="answer-box">
+    <div class="answer-numbers">
+      <div v-for="(number, index) in attempt" :key="index" class="answer-number-wrap">
+        <div class="answer-up" @click="increase(index)"><span class="icon-arrow">❮</span></div>
+        <div class="answer-number" v-text="number" />
+        <div class="answer-down" @click="decrease(index)"><span class="icon-arrow">❯</span></div>
       </div>
-      <button class="answer-button" @click="test()">Test!</button>
     </div>
-    <feedback-box v-show="answered" :success="success" />
   </div>
 </template>
 
 <script>
-import FeedbackBox from '../molecules/FeedbackBox'
-
 export default {
   name: 'AnswerBox',
-
-  components: {
-    FeedbackBox
-  },
 
   props: {
     rules: {
@@ -32,13 +22,14 @@ export default {
   },
 
   data: () => ({
-    answered: false,
-    attempt: [],
-    feedbackMessages: [],
-    success: null
+    attempt: []
   }),
 
   watch: {
+    attempt(value) {
+      this.$emit('attempt', value)
+    },
+
     rules() {
       this.mountInitialAttempt()
     }
@@ -66,35 +57,6 @@ export default {
       for (let i = 0; i < this.rules[0].numbers.length; i++) {
         this.attempt.push(0)
       }
-    },
-
-    test() {
-      let hasError = false
-      this.feedbackMessages = []
-
-      this.rules.forEach((rule, index) => {
-        const numbers = rule.numbers
-        const ruleId = index + 1
-
-        const verifyNumbers = this.attempt.filter(attemptItem => numbers.includes(attemptItem))
-        const verifyPositions = this.attempt.filter((attemptItem, attemptIndex) => {
-          return numbers.includes(attemptItem) && numbers.indexOf(attemptItem) === attemptIndex
-        })
-
-        const numbersCorrect = verifyNumbers.length === rule.correctNumbers
-        const positionsCorrect = verifyPositions.length === rule.correctPositions
-
-        if (numbersCorrect && positionsCorrect) {
-          this.feedbackMessages.push(`Rule ${ruleId} correct`)
-        } else {
-          this.feedbackMessages.push(`Rule ${ruleId} incorrect`)
-          hasError = true
-        }
-      })
-
-      this.success = !hasError
-      this.answered = true
-      setTimeout(() => { this.answered = false }, 3000)
     }
   }
 }
@@ -106,30 +68,43 @@ export default {
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 0 auto 10px;
-  }
-
-  &-button {
-    background: #007acc;
-    border: none;
-    color: #ffffff;
-    font-size: 14px;
-    padding: 5px 10px;
-    text-shadow: none;
+    margin: 20px auto;
   }
 
   &-down,
   &-up {
+    align-items: center;
+    background-color: #383838;
+    border-radius: 2px;
     cursor: pointer;
-    transform: rotate(90deg);
+    display: flex;
+    height: 25px;
+    justify-content: center;;
+    width: 75px;
+
+    .icon-arrow {
+      display: inline-block;
+      font-size: 18px;
+      font-style: normal;
+      transform: rotate(90deg);
+    }
+  }
+
+  &-down {
+    margin-top: 10px;
   }
 
   &-number {
+    align-items: center;
     background-color: #383838;
     border-radius: 5px;
     display: inline-flex;
-    margin: 5px 10px;
-    padding: 10px 12px;
+    font-size: 36px;
+    height: 45px;
+    justify-content: center;
+    margin: 5px 0;
+    padding-top: 5px;
+    width: 75px;
 
     &:first-child {
       margin-left: 0;
@@ -143,12 +118,16 @@ export default {
       align-items: center;
       display: flex;
       flex-direction: column;
-      margin-bottom: 15px;
+      margin: 0 5px;
     }
   }
 
   &-numbers {
     display: flex;
+  }
+
+  &-up {
+    margin-bottom: 10px;
   }
 }
 </style>
