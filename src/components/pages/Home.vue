@@ -16,7 +16,6 @@
       :rules="rules"
       :rulesAmount="rulesAmount"
       @nextGame="nextGame()"
-      @prevGame="prevGame()"
     />
   </div>
 </template>
@@ -78,12 +77,6 @@ export default {
     nextGame() {
       if (this.puzzleNumber < this.rulesAmount) {
         this.puzzleNumber = this.puzzleNumber + 1
-      }
-    },
-
-    prevGame() {
-      if (this.puzzleNumber > 1) {
-        this.puzzleNumber = this.puzzleNumber - 1
       }
     }
   }
