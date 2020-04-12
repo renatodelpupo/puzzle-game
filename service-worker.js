@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.fc7a617b6f95dc25eabf5a1339e43e12.js"
+  "/precache-manifest.a943303f9465c29117e91f0827a7463e.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "puzzle"});
+workbox.core.setCacheNameDetails({prefix: "solve-the-puzzle"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
