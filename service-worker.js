@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.38eb6f7dea6766228908da56b8ece5ae.js"
+  "/precache-manifest.e9832a073ab9a652293acba0ed68debd.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "puzzle"});
