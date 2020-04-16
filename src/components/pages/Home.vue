@@ -12,7 +12,7 @@
     </main>
     <Footer
       :attempt="attempt"
-      :puzzleNumber="puzzleNumber"
+      :correctAnswers="correctAnswers"
       :rules="rules"
       @correctAnswer="newCorrectAnswer"
       @nextGame="nextGame()"
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import rulesBase from '../../data/rules.json'
+import { generateRules } from '../../services/PuzzleFactory'
 import AnswerBox from '../molecules/AnswerBox'
 import Footer from '../templates/Footer'
 import RuleList from '../organisms/RuleList'
@@ -38,21 +38,13 @@ export default {
   data: () => ({
     attempt: [],
     correctAnswers: 0,
-    puzzleNumber: 1
+    rules: generateRules()
   }),
 
   computed: {
     persistedCorrectAnswers() {
       const persistedCorrectAnswers = localStorage.getItem('correctAnswers')
       return persistedCorrectAnswers ? Number(persistedCorrectAnswers) : 0
-    },
-
-    rules() {
-      return rulesBase[this.puzzleNumber - 1]
-    },
-
-    rulesAmount() {
-      return rulesBase.length
     }
   },
 
@@ -74,7 +66,6 @@ export default {
     checkPersistedCorrectAnswers() {
       if (this.persistedCorrectAnswers > this.correctAnswers) {
         this.correctAnswers = this.persistedCorrectAnswers
-        this.puzzleNumber = this.correctAnswers + 1
       }
     },
 
@@ -83,15 +74,7 @@ export default {
     },
 
     nextGame() {
-      if (this.puzzleNumber < this.rulesAmount) {
-        this.puzzleNumber = this.puzzleNumber + 1
-      }
-    },
-
-    restartGame() {
-      this.correctAnswers = 0
-      this.puzzleNumber = 1
-      localStorage.setItem('correctAnswers', 0)
+      this.rules = generateRules()
     }
   }
 }

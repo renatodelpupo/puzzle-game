@@ -8,7 +8,7 @@
       <div class="col-100">Wrong 😟</div>
     </div>
     <div v-else class="app-footer-default">
-      <div class="col-70">Puzzle {{ puzzleNumber }}</div>
+      <div class="col-70">Puzzle {{ puzzleCount }}</div>
       <div class="col-30" @click="test()">Submit <span class="icon-arrow">❯</span></div>
     </div>
   </footer>
@@ -24,7 +24,7 @@ export default {
       type: Array
     },
 
-    puzzleNumber: {
+    correctAnswers: {
       required: true,
       type: Number
     },
@@ -39,6 +39,12 @@ export default {
     feedbackMessages: [],
     status: 'default'
   }),
+
+  computed: {
+    puzzleCount() {
+      return this.correctAnswers + 1
+    }
+  },
 
   methods: {
     next() {
