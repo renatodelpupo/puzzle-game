@@ -15,6 +15,11 @@ export default {
   name: 'AnswerBox',
 
   props: {
+    rules: {
+      required: true,
+      type: Array
+    },
+
     rulesLength: {
       required: true,
       type: Number
@@ -28,6 +33,10 @@ export default {
   watch: {
     attempt(value) {
       this.$emit('attempt', value)
+    },
+
+    rules() {
+      this.mountInitialAttempt()
     }
   },
 

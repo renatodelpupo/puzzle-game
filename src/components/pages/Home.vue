@@ -6,6 +6,7 @@
     <main class="app-main">
       <rule-list :rules="rules" />
       <answer-box
+        :rules="rules"
         :rulesLength="rulesLength"
         @attempt="attemptUpdate"
       />
