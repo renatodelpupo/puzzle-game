@@ -2,8 +2,7 @@
   <footer class="app-footer">
     <div v-if="status === 'success'" class="app-footer-success">
       <div class="col-70">Correct 🎉</div>
-      <div v-if="gameEnded" class="col-30">The end</div>
-      <div v-else class="col-30" @click="next()">Next <span class="icon-arrow">❯</span></div>
+      <div class="col-30" @click="next()">Next <span class="icon-arrow">❯</span></div>
     </div>
     <div v-else-if="status === 'failure'" class="app-footer-failure">
       <div class="col-100">Wrong 😟</div>
@@ -25,11 +24,6 @@ export default {
       type: Array
     },
 
-    gameEnded: {
-      required: true,
-      type: Boolean
-    },
-
     puzzleNumber: {
       required: true,
       type: Number
@@ -45,12 +39,6 @@ export default {
     feedbackMessages: [],
     status: 'default'
   }),
-
-  watch: {
-    gameEnded(value) {
-      if (value) this.status = 'default'
-    }
-  },
 
   methods: {
     next() {

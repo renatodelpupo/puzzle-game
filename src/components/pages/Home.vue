@@ -9,14 +9,9 @@
         :rules="rules"
         @attempt="attemptUpdate"
       />
-      <modal-congrats
-        v-if="gameEnded"
-        @restartGame="restartGame"
-      />
     </main>
     <Footer
       :attempt="attempt"
-      :gameEnded="gameEnded"
       :puzzleNumber="puzzleNumber"
       :rules="rules"
       @correctAnswer="newCorrectAnswer"
@@ -29,7 +24,6 @@
 import rulesBase from '../../data/rules.json'
 import AnswerBox from '../molecules/AnswerBox'
 import Footer from '../templates/Footer'
-import ModalCongrats from '../molecules/modals/ModalCongrats'
 import RuleList from '../organisms/RuleList'
 
 export default {
@@ -38,7 +32,6 @@ export default {
   components: {
     AnswerBox,
     Footer,
-    ModalCongrats,
     RuleList
   },
 
@@ -49,10 +42,6 @@ export default {
   }),
 
   computed: {
-    gameEnded() {
-      return this.correctAnswers === this.rulesAmount
-    },
-
     persistedCorrectAnswers() {
       const persistedCorrectAnswers = localStorage.getItem('correctAnswers')
       return persistedCorrectAnswers ? Number(persistedCorrectAnswers) : 0
