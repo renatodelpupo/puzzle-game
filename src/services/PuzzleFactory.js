@@ -1,4 +1,4 @@
-export const generateRules = () => {
+export const generateRules = (rulesLength) => {
   const createAnswerBase = () => {
     return createUniqueNumbersArray()
   }
@@ -6,7 +6,7 @@ export const generateRules = () => {
   const createUniqueNumbersArray = () => {
     const uniqueNumbersArray = []
 
-    while (uniqueNumbersArray.length < 3) {
+    while (uniqueNumbersArray.length < rulesLength) {
       const r = Math.floor(Math.random() * 9)
       if (!uniqueNumbersArray.includes(r)) uniqueNumbersArray.push(r)
     }

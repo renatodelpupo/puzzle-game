@@ -6,7 +6,7 @@
     <main class="app-main">
       <rule-list :rules="rules" />
       <answer-box
-        :rules="rules"
+        :rulesLength="rulesLength"
         @attempt="attemptUpdate"
       />
     </main>
@@ -15,7 +15,7 @@
       :correctAnswers="correctAnswers"
       :rules="rules"
       @correctAnswer="newCorrectAnswer"
-      @nextGame="nextGame()"
+      @nextGame="generateRules()"
     />
   </div>
 </template>
@@ -38,13 +38,20 @@ export default {
   data: () => ({
     attempt: [],
     correctAnswers: 0,
-    rules: generateRules()
+    rules: [],
+    rulesLength: 3
   }),
 
   computed: {
     persistedCorrectAnswers() {
       const persistedCorrectAnswers = localStorage.getItem('correctAnswers')
       return persistedCorrectAnswers ? Number(persistedCorrectAnswers) : 0
+    },
+
+    persistedRules() {
+      const persistedRules = localStorage.getItem('currentRules')
+      const persistedRulesObject = persistedRules ? JSON.parse(persistedRules) : null
+      return persistedRulesObject
     }
   },
 
@@ -56,6 +63,7 @@ export default {
 
   mounted() {
     this.checkPersistedCorrectAnswers()
+    this.setInitialRules()
   },
 
   methods: {
@@ -69,12 +77,18 @@ export default {
       }
     },
 
+    generateRules() {
+      const newRules = generateRules(this.rulesLength)
+      this.rules = newRules
+      localStorage.setItem('currentRules', JSON.stringify(newRules))
+    },
+
     newCorrectAnswer() {
       this.correctAnswers = this.correctAnswers + 1
     },
 
-    nextGame() {
-      this.rules = generateRules()
+    setInitialRules() {
+      this.persistedRules ? this.rules = this.persistedRules : this.generateRules()
     }
   }
 }

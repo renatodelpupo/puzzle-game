@@ -1,5 +1,5 @@
 <template>
-  <div class="rule-list">
+  <div v-if="rules" class="rule-list">
     <rule-box v-for="rule in rules" :rule="rule" :key="rule.numbers.toString()" />
   </div>
 </template>
