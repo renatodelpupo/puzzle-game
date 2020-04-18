@@ -4,7 +4,7 @@
       <h1>Solve the puzzle</h1>
     </header>
     <main class="app-main">
-      <rule-list :rules="rules" />
+      <Rules :rules="rules" />
       <answer-box
         :rules="rules"
         :rulesLength="rulesLength"
@@ -25,7 +25,7 @@
 import { generateRules } from '../../services/PuzzleFactory'
 import AnswerBox from '../molecules/AnswerBox'
 import Footer from '../templates/Footer'
-import RuleList from '../organisms/RuleList'
+import Rules from '../molecules/Rules'
 
 export default {
   name: 'Home',
@@ -33,7 +33,7 @@ export default {
   components: {
     AnswerBox,
     Footer,
-    RuleList
+    Rules
   },
 
   data: () => ({
