@@ -5,7 +5,7 @@
     </header>
     <main class="app-main">
       <Rules :rules="rules" />
-      <answer-box
+      <Answer
         :rules="rules"
         :rulesLength="rulesLength"
         @attempt="attemptUpdate"
@@ -23,7 +23,7 @@
 
 <script>
 import { generateRules } from '../../services/PuzzleFactory'
-import AnswerBox from '../molecules/AnswerBox'
+import Answer from '../molecules/Answer'
 import Footer from '../templates/Footer'
 import Rules from '../molecules/Rules'
 
@@ -31,7 +31,7 @@ export default {
   name: 'Home',
 
   components: {
-    AnswerBox,
+    Answer,
     Footer,
     Rules
   },

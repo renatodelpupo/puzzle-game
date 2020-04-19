@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'AnswerBox',
+  name: 'Answer',
 
   props: {
     rules: {
@@ -59,6 +59,7 @@ export default {
 
     mountInitialAttempt() {
       this.attempt = []
+
       for (let i = 0; i < this.rulesLength; i++) {
         this.attempt.push(0)
       }
