@@ -23,9 +23,9 @@
 
 <script>
 import { generateRules } from '../../services/PuzzleFactory'
-import Answer from '../molecules/Answer'
+import Answer from '../atoms/Answer'
 import Footer from '../templates/Footer'
-import Rules from '../molecules/Rules'
+import Rules from '../atoms/Rules'
 
 export default {
   name: 'Home',
