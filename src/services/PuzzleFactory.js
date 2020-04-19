@@ -50,3 +50,23 @@ export const generateRules = (rulesLength) => {
 
   return rules
 }
+
+export const testRules = (attempt, rules) => {
+  let hasError = null
+
+  rules.forEach(rule => {
+    const numbers = rule.numbers
+
+    const verifyNumbers = attempt.filter(attemptItem => numbers.includes(attemptItem))
+    const verifyPositions = attempt.filter((attemptItem, attemptIndex) =>
+      numbers.includes(attemptItem) && numbers.indexOf(attemptItem) === attemptIndex
+    )
+
+    const numbersCorrect = verifyNumbers.length === rule.correctNumbers
+    const positionsCorrect = verifyPositions.length === rule.correctPositions
+
+    if (!numbersCorrect || !positionsCorrect) hasError = true
+  })
+
+  return !hasError
+}

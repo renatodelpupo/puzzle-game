@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { testRules } from '../../services/PuzzleFactory'
+
 export default {
   name: 'Footer',
 
@@ -36,7 +38,6 @@ export default {
   },
 
   data: () => ({
-    feedbackMessages: [],
     status: 'default'
   }),
 
@@ -53,35 +54,14 @@ export default {
     },
 
     test() {
-      let hasError = false
-      this.feedbackMessages = []
+      const passTheTest = testRules(this.attempt, this.rules)
 
-      this.rules.forEach((rule, index) => {
-        const numbers = rule.numbers
-        const ruleId = index + 1
-
-        const verifyNumbers = this.attempt.filter(attemptItem => numbers.includes(attemptItem))
-        const verifyPositions = this.attempt.filter((attemptItem, attemptIndex) => {
-          return numbers.includes(attemptItem) && numbers.indexOf(attemptItem) === attemptIndex
-        })
-
-        const numbersCorrect = verifyNumbers.length === rule.correctNumbers
-        const positionsCorrect = verifyPositions.length === rule.correctPositions
-
-        if (numbersCorrect && positionsCorrect) {
-          this.feedbackMessages.push(`Rule ${ruleId} correct`)
-        } else {
-          this.feedbackMessages.push(`Rule ${ruleId} incorrect`)
-          hasError = true
-        }
-      })
-
-      if (hasError) {
-        this.status = 'failure'
-        setTimeout(() => { this.status = 'default' }, 2000)
-      } else {
+      if (passTheTest) {
         this.status = 'success'
         this.$emit('correctAnswer')
+      } else {
+        this.status = 'failure'
+        setTimeout(() => { this.status = 'default' }, 2000)
       }
     }
   }
