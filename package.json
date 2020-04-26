@@ -1,6 +1,6 @@
 {
-  "name": "solve-the-puzzle",
-  "version": "0.2.0",
+  "name": "solve-it",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

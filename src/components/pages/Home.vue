@@ -1,7 +1,7 @@
 <template>
   <div class="app-home">
     <header class="app-header">
-      <h1>Solve the puzzle</h1>
+      <h1>Solve it!</h1>
     </header>
     <main class="app-main">
       <Rules :rules="rules" />

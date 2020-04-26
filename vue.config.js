@@ -3,7 +3,7 @@ module.exports = {
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
     msTileColor: '#383838',
-    name: 'Solve the puzzle',
+    name: 'Solve it!',
     themeColor: '#383838'
   }
 }
