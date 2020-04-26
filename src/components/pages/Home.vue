@@ -123,7 +123,7 @@ export default {
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden scroll;
+    overflow: hidden auto;
   }
 }
 </style>

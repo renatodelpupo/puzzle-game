@@ -77,7 +77,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    overflow: hidden scroll;
+    overflow: hidden auto;
     margin: 20px;
   }
 
