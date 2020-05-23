@@ -58,11 +58,7 @@ export default {
     },
 
     mountInitialAttempt() {
-      this.attempt = []
-
-      for (let i = 0; i < this.rulesLength; i++) {
-        this.attempt.push(0)
-      }
+      this.attempt = Array(this.rulesLength).fill(0)
     }
   }
 }
