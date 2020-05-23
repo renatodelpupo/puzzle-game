@@ -23,9 +23,9 @@
 
 <script>
 import { generateRules } from '../../services/PuzzleFactory'
-import Answer from '../atoms/Answer'
-import Footer from '../organisms/Footer'
-import Rules from '../atoms/Rules'
+import Answer from '../atoms/Answer.vue'
+import Footer from '../organisms/Footer.vue'
+import Rules from '../atoms/Rules.vue'
 
 export default {
   name: 'Home',
