@@ -1,27 +1,27 @@
 export const generateRules = (rulesLength) => {
   const createAnswerBase = () => {
-    return createUniqueNumbersArray()
+    return createUniqueNumbersKey()
   }
 
-  const createUniqueNumbersArray = () => {
-    const uniqueNumbersArray = []
+  const createUniqueNumbersKey = () => {
+    const uniqueNumbers = []
 
-    while (uniqueNumbersArray.length < rulesLength) {
+    while (uniqueNumbers.length < rulesLength) {
       const r = Math.floor(Math.random() * 9)
-      if (!uniqueNumbersArray.includes(r)) uniqueNumbersArray.push(r)
+      if (!uniqueNumbers.includes(r)) uniqueNumbers.push(r)
     }
 
-    return uniqueNumbersArray
+    return uniqueNumbers
   }
 
-  const createRulesBaseWithNumbersArray = () => {
+  const createRulesBase = () => {
     const rules = []
 
     for (let i = 0; i < 6; i++) {
       rules.push({
         correctNumbers: null,
         correctPositions: null,
-        numbers: createUniqueNumbersArray()
+        numbers: createUniqueNumbersKey()
       })
     }
 
@@ -45,7 +45,7 @@ export const generateRules = (rulesLength) => {
   }
 
   const _answerBase = createAnswerBase()
-  const _rulesBase = createRulesBaseWithNumbersArray()
+  const _rulesBase = createRulesBase()
   const rules = defineRulesMatches(_answerBase, _rulesBase)
 
   return rules
