@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'Answer',
 
@@ -27,11 +27,11 @@ export default {
   },
 
   data: () => ({
-    attempt: []
+    attempt: [] as Array<number>
   }),
 
   watch: {
-    attempt(value) {
+    attempt(value: Array<number>) {
       this.$emit('attempt', value)
     },
 
@@ -45,13 +45,13 @@ export default {
   },
 
   methods: {
-    decrease(index) {
+    decrease(index: number) {
       this.attempt[index] > 0
         ? this.$set(this.attempt, index, this.attempt[index] - 1)
         : this.$set(this.attempt, index, 9)
     },
 
-    increase(index) {
+    increase(index: number) {
       this.attempt[index] < 9
         ? this.$set(this.attempt, index, this.attempt[index] + 1)
         : this.$set(this.attempt, index, 0)

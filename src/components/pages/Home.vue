@@ -21,8 +21,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { generateRules } from '../../services/PuzzleFactory'
+import { Rule } from '../../../types'
 import Answer from '../atoms/Answer.vue'
 import Footer from '../organisms/Footer.vue'
 import Rules from '../atoms/Rules.vue'
@@ -37,19 +38,19 @@ export default {
   },
 
   data: () => ({
-    attempt: [],
-    correctAnswers: 0,
-    rules: [],
+    attempt: [] as Array<number>,
+    correctAnswers: 0 as number,
+    rules: [] as Array<Rule>,
     rulesLength: 3
   }),
 
   computed: {
-    persistedCorrectAnswers() {
+    persistedCorrectAnswers(): number {
       const persistedCorrectAnswers = localStorage.getItem('correctAnswers')
       return persistedCorrectAnswers ? Number(persistedCorrectAnswers) : 0
     },
 
-    persistedRules() {
+    persistedRules(): Array<Rule> {
       const persistedRules = localStorage.getItem('currentRules')
       const persistedRulesObject = persistedRules ? JSON.parse(persistedRules) : null
       return persistedRulesObject
@@ -57,8 +58,8 @@ export default {
   },
 
   watch: {
-    correctAnswers(value) {
-      if (value > this.persistedCorrectAnswers) localStorage.setItem('correctAnswers', value)
+    correctAnswers(value: number) {
+      if (value > this.persistedCorrectAnswers) localStorage.setItem('correctAnswers', value.toString())
     }
   },
 
@@ -68,7 +69,7 @@ export default {
   },
 
   methods: {
-    attemptUpdate(value) {
+    attemptUpdate(value: Array<number>) {
       this.attempt = value
     },
 

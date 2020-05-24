@@ -1,10 +1,12 @@
-export const generateRules = (rulesLength) => {
+import { Rule } from '../../types'
+
+export const generateRules = (rulesLength: number): Array<Rule> => {
   const createAnswerBase = () => {
     return createUniqueNumbersKey()
   }
 
   const createUniqueNumbersKey = () => {
-    const uniqueNumbers = []
+    const uniqueNumbers: Array<number> = []
 
     while (uniqueNumbers.length < rulesLength) {
       const r = Math.floor(Math.random() * 9)
@@ -15,7 +17,7 @@ export const generateRules = (rulesLength) => {
   }
 
   const createRulesBase = () => {
-    const rules = []
+    const rules: Array<any> = []
 
     for (let i = 0; i < 6; i++) {
       rules.push({
@@ -28,9 +30,9 @@ export const generateRules = (rulesLength) => {
     return rules
   }
 
-  const defineRulesMatches = (answerBase, rules) => {
+  const defineRulesMatches = (answerBase: Array<number>, rules: Array<any>) => {
     rules.forEach(rule => {
-      const numbers = rule.numbers
+      const numbers: Array<number> = rule.numbers
 
       const equalNumbers = numbers.filter(number => answerBase.includes(number))
       const equalPositions = numbers.filter((number, numberIndex) =>
@@ -51,11 +53,11 @@ export const generateRules = (rulesLength) => {
   return rules
 }
 
-export const testRules = (attempt, rules) => {
+export const testRules = (attempt: Array<number>, rules: Array<any>) => {
   let hasError = null
 
   rules.forEach(rule => {
-    const numbers = rule.numbers
+    const numbers: Array<number> = rule.numbers
 
     const verifyNumbers = attempt.filter(attemptItem => numbers.includes(attemptItem))
     const verifyPositions = attempt.filter((attemptItem, attemptIndex) =>

@@ -14,7 +14,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Rule } from '../../../types'
+
 export default {
   name: 'Rules',
 
@@ -26,7 +28,7 @@ export default {
   },
 
   methods: {
-    setDescription(rule) {
+    setDescription(rule: Rule): string {
       const descriptionNumbers = () => {
         if (rule.correctNumbers === 0) return 'No correct numbers.'
         if (rule.correctNumbers === 1) return 'One correct number'

@@ -14,7 +14,8 @@
   </footer>
 </template>
 
-<script>
+<script lang="ts">
+import { Rule } from '../../../types'
 import { testRules } from '../../services/PuzzleFactory'
 
 export default {
@@ -23,7 +24,7 @@ export default {
   props: {
     attempt: {
       required: true,
-      type: Array
+      type: Array as () => Array<number>
     },
 
     correctAnswers: {
@@ -33,16 +34,16 @@ export default {
 
     rules: {
       required: true,
-      type: Array
+      type: Array as () => Array<Rule>
     }
   },
 
   data: () => ({
-    status: 'default'
+    status: 'default' as string
   }),
 
   computed: {
-    puzzleCount() {
+    puzzleCount(): number {
       return this.correctAnswers + 1
     }
   },
