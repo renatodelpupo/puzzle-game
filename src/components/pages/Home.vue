@@ -16,7 +16,7 @@
       :correctAnswers="correctAnswers"
       :rules="rules"
       @correctAnswer="newCorrectAnswer"
-      @nextGame="generateRules()"
+      @nextGame="nextGame()"
     />
   </div>
 </template>
@@ -40,6 +40,7 @@ export default {
   data: () => ({
     attempt: [] as Array<number>,
     correctAnswers: 0 as number,
+    nextRules: [] as Array<Rule>,
     rules: [] as Array<Rule>,
     rulesLength: 3
   }),
@@ -48,6 +49,12 @@ export default {
     persistedCorrectAnswers(): number {
       const persistedCorrectAnswers = localStorage.getItem('correctAnswers')
       return persistedCorrectAnswers ? Number(persistedCorrectAnswers) : 0
+    },
+
+    persistedNextRules(): Array<Rule> {
+      const persistedNextRules = localStorage.getItem('nextRules')
+      const persistedNextRulesObject = persistedNextRules ? JSON.parse(persistedNextRules) : null
+      return persistedNextRulesObject
     },
 
     persistedRules(): Array<Rule> {
@@ -79,10 +86,16 @@ export default {
       }
     },
 
-    generateRules() {
-      const newRules = generateRules(this.rulesLength)
-      this.rules = newRules
-      localStorage.setItem('currentRules', JSON.stringify(newRules))
+    generateNextRules() {
+      this.nextRules = generateRules(this.rulesLength)
+      localStorage.setItem('nextRules', JSON.stringify(this.nextRules))
+    },
+
+    nextGame() {
+      this.rules = this.nextRules
+      localStorage.setItem('currentRules', JSON.stringify(this.rules))
+
+      this.generateNextRules()
     },
 
     newCorrectAnswer() {
@@ -90,7 +103,8 @@ export default {
     },
 
     setInitialRules() {
-      this.persistedRules ? this.rules = this.persistedRules : this.generateRules()
+      this.persistedRules ? this.rules = this.persistedRules : generateRules(this.rulesLength)
+      this.persistedNextRules ? this.nextRules = this.persistedNextRules : generateRules(this.rulesLength)
     }
   }
 }
