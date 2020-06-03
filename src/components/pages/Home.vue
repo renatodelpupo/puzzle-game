@@ -4,9 +4,9 @@
       <h1>Solve it!</h1>
     </header>
     <main class="app-main">
-      <Rules :rules="rules" />
+      <Rules :rules="currentRules" />
       <Answer
-        :rules="rules"
+        :rules="currentRules"
         :rulesLength="rulesLength"
         @attempt="attemptUpdate"
       />
@@ -14,7 +14,7 @@
     <Footer
       :attempt="attempt"
       :correctAnswers="correctAnswers"
-      :rules="rules"
+      :rules="currentRules"
       @correctAnswer="newCorrectAnswer"
       @nextGame="nextGame()"
     />
@@ -40,8 +40,8 @@ export default {
   data: () => ({
     attempt: [] as Array<number>,
     correctAnswers: 0 as number,
+    currentRules: [] as Array<Rule>,
     nextRules: [] as Array<Rule>,
-    rules: [] as Array<Rule>,
     rulesLength: 3
   }),
 
@@ -51,16 +51,16 @@ export default {
       return persistedCorrectAnswers ? Number(persistedCorrectAnswers) : 0
     },
 
+    persistedCurrentRules(): Array<Rule> {
+      const persistedCurrentRules = localStorage.getItem('currentRules')
+      const persistedRulesObject = persistedCurrentRules ? JSON.parse(persistedCurrentRules) : null
+      return persistedRulesObject
+    },
+
     persistedNextRules(): Array<Rule> {
       const persistedNextRules = localStorage.getItem('nextRules')
       const persistedNextRulesObject = persistedNextRules ? JSON.parse(persistedNextRules) : null
       return persistedNextRulesObject
-    },
-
-    persistedRules(): Array<Rule> {
-      const persistedRules = localStorage.getItem('currentRules')
-      const persistedRulesObject = persistedRules ? JSON.parse(persistedRules) : null
-      return persistedRulesObject
     }
   },
 
@@ -92,8 +92,8 @@ export default {
     },
 
     nextGame() {
-      this.rules = this.nextRules
-      localStorage.setItem('currentRules', JSON.stringify(this.rules))
+      this.currentRules = this.nextRules
+      localStorage.setItem('currentRules', JSON.stringify(this.currentRules))
 
       this.generateNextRules()
     },
@@ -103,7 +103,7 @@ export default {
     },
 
     setInitialRules() {
-      this.persistedRules ? this.rules = this.persistedRules : generateRules(this.rulesLength)
+      this.persistedCurrentRules ? this.currentRules = this.persistedCurrentRules : generateRules(this.rulesLength)
       this.persistedNextRules ? this.nextRules = this.persistedNextRules : generateRules(this.rulesLength)
     }
   }
