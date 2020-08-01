@@ -1,6 +1,6 @@
 <template>
   <div v-if="rules" class="rule-list">
-    <div v-for="rule in rules" :key="rule.numbers.toString()" class="rule-box">
+    <div v-for="(rule, index) in rules" :key="setKey(index, rule)" class="rule-box">
       <div class="rule-number-wrap">
         <span
           v-for="number in rule.numbers"
@@ -53,6 +53,10 @@ export default Vue.extend({
       }
 
       return `${descriptionNumbers()}${descriptionPositions()}`
+    },
+
+    setKey(index: number, rule: Rule) {
+      return rule.numbers.toString() + index
     }
   }
 })
