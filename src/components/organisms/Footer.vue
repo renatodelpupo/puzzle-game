@@ -17,8 +17,9 @@
 <script lang="ts">
 import { Rule } from '../../../types'
 import { testRules } from '../../services/PuzzleFactory'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'Footer',
 
   props: {
@@ -66,7 +67,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

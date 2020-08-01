@@ -6,14 +6,15 @@
 
 <script lang="ts">
 import Home from './components/pages/Home.vue'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'App',
 
   components: {
     Home
   }
-}
+})
 </script>
 
 <style>

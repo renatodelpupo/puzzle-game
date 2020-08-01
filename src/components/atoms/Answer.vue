@@ -11,7 +11,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'Answer',
 
   props: {
@@ -61,7 +63,7 @@ export default {
       this.attempt = Array(this.rulesLength).fill(0)
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

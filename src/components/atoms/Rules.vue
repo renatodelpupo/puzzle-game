@@ -16,8 +16,9 @@
 
 <script lang="ts">
 import { Rule } from '../../../types'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'Rules',
 
   props: {
@@ -54,7 +55,7 @@ export default {
       return `${descriptionNumbers()}${descriptionPositions()}`
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

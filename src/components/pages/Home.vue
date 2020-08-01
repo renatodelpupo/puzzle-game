@@ -27,8 +27,9 @@ import { Rule } from '../../../types'
 import Answer from '../atoms/Answer.vue'
 import Footer from '../organisms/Footer.vue'
 import Rules from '../atoms/Rules.vue'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'Home',
 
   components: {
@@ -107,7 +108,7 @@ export default {
       this.persistedNextRules ? this.nextRules = this.persistedNextRules : generateRules(this.rulesLength)
     }
   }
-}
+})
 </script>
 
 <style lang="scss">
