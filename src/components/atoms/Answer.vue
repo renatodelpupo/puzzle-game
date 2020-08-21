@@ -83,7 +83,7 @@ export default Vue.extend({
     cursor: pointer;
     display: flex;
     height: 25px;
-    justify-content: center;;
+    justify-content: center;
     width: 75px;
 
     .icon-arrow {

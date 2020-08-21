@@ -31,12 +31,12 @@ export const generateRules = (rulesLength: number): Array<Rule> => {
   }
 
   const defineRulesMatches = (answerBase: Array<number>, rules: Array<any>) => {
-    rules.forEach(rule => {
+    rules.forEach((rule) => {
       const numbers: Array<number> = rule.numbers
 
-      const equalNumbers = numbers.filter(number => answerBase.includes(number))
-      const equalPositions = numbers.filter((number, numberIndex) =>
-        answerBase.includes(number) && answerBase.indexOf(number) === numberIndex
+      const equalNumbers = numbers.filter((number) => answerBase.includes(number))
+      const equalPositions = numbers.filter(
+        (number, numberIndex) => answerBase.includes(number) && answerBase.indexOf(number) === numberIndex
       )
 
       rule.correctNumbers = equalNumbers.length
@@ -56,12 +56,12 @@ export const generateRules = (rulesLength: number): Array<Rule> => {
 export const testRules = (attempt: Array<number>, rules: Array<any>) => {
   let hasError = null
 
-  rules.forEach(rule => {
+  rules.forEach((rule) => {
     const numbers: Array<number> = rule.numbers
 
-    const verifyNumbers = attempt.filter(attemptItem => numbers.includes(attemptItem))
-    const verifyPositions = attempt.filter((attemptItem, attemptIndex) =>
-      numbers.includes(attemptItem) && numbers.indexOf(attemptItem) === attemptIndex
+    const verifyNumbers = attempt.filter((attemptItem) => numbers.includes(attemptItem))
+    const verifyPositions = attempt.filter(
+      (attemptItem, attemptIndex) => numbers.includes(attemptItem) && numbers.indexOf(attemptItem) === attemptIndex
     )
 
     const numbersCorrect = verifyNumbers.length === rule.correctNumbers

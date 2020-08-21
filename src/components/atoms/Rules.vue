@@ -2,12 +2,7 @@
   <div v-if="rules" class="rule-list">
     <div v-for="(rule, index) in rules" :key="setKey(index, rule)" class="rule-box">
       <div class="rule-number-wrap">
-        <span
-          v-for="number in rule.numbers"
-          :key="number.toString()"
-          class="rule-number"
-          v-text="number"
-        />
+        <span v-for="number in rule.numbers" :key="number.toString()" class="rule-number" v-text="number" />
       </div>
       <span class="rule-description" v-text="setDescription(rule)" />
     </div>

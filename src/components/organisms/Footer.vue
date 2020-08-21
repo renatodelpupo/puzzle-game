@@ -63,7 +63,9 @@ export default Vue.extend({
         this.$emit('correctAnswer')
       } else {
         this.status = 'failure'
-        setTimeout(() => { this.status = 'default' }, 2000)
+        setTimeout(() => {
+          this.status = 'default'
+        }, 2000)
       }
     }
   }
@@ -94,7 +96,6 @@ export default Vue.extend({
   }
 
   &-default {
-
     .col-30 {
       background-color: #252525;
     }
@@ -109,7 +110,6 @@ export default Vue.extend({
   }
 
   &-success {
-
     .col-30 {
       background-color: #4c8761;
     }

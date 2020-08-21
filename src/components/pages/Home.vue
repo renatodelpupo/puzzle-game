@@ -5,11 +5,7 @@
     </header>
     <main class="app-main">
       <Rules :rules="currentRules" />
-      <Answer
-        :rules="currentRules"
-        :rulesLength="rulesLength"
-        @attempt="attemptUpdate"
-      />
+      <Answer :rules="currentRules" :rulesLength="rulesLength" @attempt="attemptUpdate" />
     </main>
     <Footer
       :attempt="attempt"
@@ -104,8 +100,8 @@ export default Vue.extend({
     },
 
     setInitialRules() {
-      this.persistedCurrentRules ? this.currentRules = this.persistedCurrentRules : generateRules(this.rulesLength)
-      this.persistedNextRules ? this.nextRules = this.persistedNextRules : generateRules(this.rulesLength)
+      this.persistedCurrentRules ? (this.currentRules = this.persistedCurrentRules) : generateRules(this.rulesLength)
+      this.persistedNextRules ? (this.nextRules = this.persistedNextRules) : generateRules(this.rulesLength)
     }
   }
 })
@@ -113,7 +109,6 @@ export default Vue.extend({
 
 <style lang="scss">
 .app {
-
   &-header {
     background-color: #383838;
     color: #ccc;
