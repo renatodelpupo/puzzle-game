@@ -16,13 +16,13 @@ export const generateRules = (rulesLength: number): Array<Rule> => {
     return uniqueNumbers
   }
 
-  const createRulesBase = () => {
-    const rules: Array<any> = []
+  const createRulesBase = (): Array<Rule> => {
+    const rules: Array<Rule> = []
 
     for (let i = 0; i < 6; i++) {
       rules.push({
-        correctNumbers: null,
-        correctPositions: null,
+        correctNumbers: 0,
+        correctPositions: 0,
         numbers: createUniqueNumbersKey()
       })
     }
@@ -30,7 +30,7 @@ export const generateRules = (rulesLength: number): Array<Rule> => {
     return rules
   }
 
-  const defineRulesMatches = (answerBase: Array<number>, rules: Array<any>) => {
+  const defineRulesMatches = (answerBase: Array<number>, rules: Array<Rule>) => {
     rules.forEach((rule) => {
       const numbers: Array<number> = rule.numbers
 
@@ -53,7 +53,7 @@ export const generateRules = (rulesLength: number): Array<Rule> => {
   return rules
 }
 
-export const testRules = (attempt: Array<number>, rules: Array<any>) => {
+export const testRules = (attempt: Array<number>, rules: Array<Rule>) => {
   let hasError = null
 
   rules.forEach((rule) => {
