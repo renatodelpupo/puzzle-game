@@ -24,6 +24,12 @@ import { RuleInterface } from '../../../types'
 import { testRules } from '../../services/PuzzleFactory'
 import Vue from 'vue'
 
+enum Status {
+  Default = 'default',
+  Failure = 'failure',
+  Success = 'success'
+}
+
 export default Vue.extend({
   name: 'Footer',
 
@@ -45,7 +51,7 @@ export default Vue.extend({
   },
 
   data: () => ({
-    status: 'default' as string
+    status: Status.Default as string
   }),
 
   computed: {
@@ -57,19 +63,19 @@ export default Vue.extend({
   methods: {
     next() {
       this.$emit('nextGame')
-      this.status = 'default'
+      this.status = Status.Default
     },
 
     test() {
       const passTheTest = testRules(this.attempt, this.rules)
 
       if (passTheTest) {
-        this.status = 'success'
+        this.status = Status.Success
         this.$emit('correctAnswer')
       } else {
-        this.status = 'failure'
+        this.status = Status.Failure
         setTimeout(() => {
-          this.status = 'default'
+          this.status = Status.Default
         }, 2000)
       }
     }

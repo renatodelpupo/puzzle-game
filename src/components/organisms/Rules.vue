@@ -17,7 +17,7 @@ export default Vue.extend({
   props: {
     rules: {
       required: true,
-      type: Array
+      type: Array as () => Array<RuleInterface>
     }
   },
 

@@ -11,6 +11,7 @@
 </template>
 
 <script lang="ts">
+import { RuleInterface } from '../../../types'
 import Vue from 'vue'
 
 export default Vue.extend({
@@ -19,7 +20,7 @@ export default Vue.extend({
   props: {
     rules: {
       required: true,
-      type: Array
+      type: Array as () => Array<RuleInterface>
     },
 
     rulesLength: {

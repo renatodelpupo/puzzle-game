@@ -39,8 +39,8 @@ export default Vue.extend({
     correctAnswers: 0 as number,
     currentRules: [] as Array<RuleInterface>,
     nextRules: [] as Array<RuleInterface>,
-    rulesLength: 3,
-    rulesQuantity: 6
+    rulesLength: 3 as number,
+    rulesQuantity: 6 as number
   }),
 
   computed: {
