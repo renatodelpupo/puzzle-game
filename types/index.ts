@@ -1,4 +1,4 @@
-export interface Rule {
+export interface RuleInterface {
   correctNumbers: number
   correctPositions: number
   numbers: number[]

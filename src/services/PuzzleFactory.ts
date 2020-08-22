@@ -1,6 +1,6 @@
-import { Rule } from '../../types'
+import { RuleInterface } from '../../types'
 
-export const generateRules = (rulesLength: number, rulesQuantity: number): Array<Rule> => {
+export const generateRules = (rulesLength: number, rulesQuantity: number): Array<RuleInterface> => {
   const createAnswerBase = () => {
     return createUniqueNumbersKey()
   }
@@ -47,9 +47,9 @@ export const generateRules = (rulesLength: number, rulesQuantity: number): Array
     return rulesBaseKeys
   }
 
-  const createRulesBase = (): Array<Rule> => {
+  const createRulesBase = (): Array<RuleInterface> => {
     const rulesBaseKeys: Array<Array<number>> = createRulesBaseKeys()
-    const rules: Array<Rule> = []
+    const rules: Array<RuleInterface> = []
 
     for (let i = 0; i < rulesQuantity; i++) {
       rules.push({
@@ -62,7 +62,7 @@ export const generateRules = (rulesLength: number, rulesQuantity: number): Array
     return rules
   }
 
-  const defineRulesMatches = (answerBase: Array<number>, rules: Array<Rule>) => {
+  const defineRulesMatches = (answerBase: Array<number>, rules: Array<RuleInterface>) => {
     rules.forEach((rule) => {
       const numbers: Array<number> = rule.numbers
 
@@ -85,7 +85,7 @@ export const generateRules = (rulesLength: number, rulesQuantity: number): Array
   return rules
 }
 
-export const testRules = (attempt: Array<number>, rules: Array<Rule>) => {
+export const testRules = (attempt: Array<number>, rules: Array<RuleInterface>) => {
   let hasError = null
 
   rules.forEach((rule) => {

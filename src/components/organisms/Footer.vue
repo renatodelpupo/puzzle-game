@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { Rule } from '../../../types'
+import { RuleInterface } from '../../../types'
 import { testRules } from '../../services/PuzzleFactory'
 import Vue from 'vue'
 
@@ -40,7 +40,7 @@ export default Vue.extend({
 
     rules: {
       required: true,
-      type: Array as () => Array<Rule>
+      type: Array as () => Array<RuleInterface>
     }
   },
 

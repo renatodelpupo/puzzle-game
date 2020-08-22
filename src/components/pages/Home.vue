@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { generateRules } from '../../services/PuzzleFactory'
-import { Rule } from '../../../types'
+import { RuleInterface } from '../../../types'
 import Answer from '../atoms/Answer.vue'
 import Footer from '../organisms/Footer.vue'
 import Rules from '../organisms/Rules.vue'
@@ -37,8 +37,8 @@ export default Vue.extend({
   data: () => ({
     attempt: [] as Array<number>,
     correctAnswers: 0 as number,
-    currentRules: [] as Array<Rule>,
-    nextRules: [] as Array<Rule>,
+    currentRules: [] as Array<RuleInterface>,
+    nextRules: [] as Array<RuleInterface>,
     rulesLength: 3,
     rulesQuantity: 6
   }),
@@ -49,13 +49,13 @@ export default Vue.extend({
       return persistedCorrectAnswers ? Number(persistedCorrectAnswers) : 0
     },
 
-    persistedCurrentRules(): Array<Rule> {
+    persistedCurrentRules(): Array<RuleInterface> {
       const persistedCurrentRules = localStorage.getItem('currentRules')
       const persistedRulesObject = persistedCurrentRules ? JSON.parse(persistedCurrentRules) : null
       return persistedRulesObject
     },
 
-    persistedNextRules(): Array<Rule> {
+    persistedNextRules(): Array<RuleInterface> {
       const persistedNextRules = localStorage.getItem('nextRules')
       const persistedNextRulesObject = persistedNextRules ? JSON.parse(persistedNextRules) : null
       return persistedNextRulesObject

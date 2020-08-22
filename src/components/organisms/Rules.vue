@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { Rule } from '../../../types'
+import { RuleInterface } from '../../../types'
 import Vue from 'vue'
 
 export default Vue.extend({
@@ -24,7 +24,7 @@ export default Vue.extend({
   },
 
   methods: {
-    setDescription(rule: Rule): string {
+    setDescription(rule: RuleInterface): string {
       const descriptionNumbers = () => {
         if (rule.correctNumbers === 0) return 'No correct numbers.'
         if (rule.correctNumbers === 1) return 'One correct number'
@@ -49,7 +49,7 @@ export default Vue.extend({
       return `${descriptionNumbers()}${descriptionPositions()}`
     },
 
-    setKey(index: number, rule: Rule) {
+    setKey(index: number, rule: RuleInterface) {
       return rule.numbers.toString() + index
     }
   }
