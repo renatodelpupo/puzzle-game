@@ -22,7 +22,7 @@ import { generateRules } from '../../services/PuzzleFactory'
 import { Rule } from '../../../types'
 import Answer from '../atoms/Answer.vue'
 import Footer from '../organisms/Footer.vue'
-import Rules from '../atoms/Rules.vue'
+import Rules from '../organisms/Rules.vue'
 import Vue from 'vue'
 
 export default Vue.extend({
