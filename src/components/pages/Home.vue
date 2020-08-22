@@ -100,8 +100,19 @@ export default Vue.extend({
     },
 
     setInitialRules() {
-      this.persistedCurrentRules ? (this.currentRules = this.persistedCurrentRules) : generateRules(this.rulesLength)
-      this.persistedNextRules ? (this.nextRules = this.persistedNextRules) : generateRules(this.rulesLength)
+      if (this.persistedCurrentRules) {
+        this.currentRules = this.persistedCurrentRules
+      } else {
+        this.currentRules = generateRules(this.rulesLength)
+        localStorage.setItem('currentRules', JSON.stringify(this.currentRules))
+      }
+
+      if (this.persistedNextRules) {
+        this.nextRules = this.persistedNextRules
+      } else {
+        this.nextRules = generateRules(this.rulesLength)
+        localStorage.setItem('nextRules', JSON.stringify(this.nextRules))
+      }
     }
   }
 })
