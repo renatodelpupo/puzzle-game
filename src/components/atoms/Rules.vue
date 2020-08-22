@@ -42,7 +42,6 @@ export default Vue.extend({
         if (rule.correctPositions === 1) return ', but only one in the right place.'
         if (rule.correctPositions === 2) return ', but only two in the right place.'
         if (rule.correctPositions === 3) return ', but only three in the right place.'
-        if (rule.correctPositions === 3) return ', but only four in the right place.'
 
         return ''
       }
