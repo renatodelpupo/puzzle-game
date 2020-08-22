@@ -8,7 +8,12 @@
       <div class="col-100">Wrong 😟</div>
     </div>
     <div v-else class="app-footer-default">
-      <div class="col-70">Puzzle {{ puzzleCount }}</div>
+      <div class="col-70">
+        <div class="app-footer-streak">
+          <span class="icon-streak">🔥</span>
+          <span lass="app-footer-streak-text" v-text="puzzleCount" />
+        </div>
+      </div>
       <div class="col-30" @click="test()">Submit <span class="icon-arrow">❯</span></div>
     </div>
   </footer>
@@ -91,7 +96,7 @@ export default Vue.extend({
       align-items: center;
       display: flex;
       justify-content: center;
-      padding: 15px 0;
+      padding: 15px;
     }
   }
 
@@ -107,6 +112,22 @@ export default Vue.extend({
 
   &-failure {
     background-color: #e17833;
+  }
+
+  &-streak {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+
+    &-text {
+      font-size: 1.1em;
+    }
+
+    .icon-streak {
+      font-size: 1.2em;
+      margin-right: 0.25em;
+    }
   }
 
   &-success {
