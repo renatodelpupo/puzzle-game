@@ -90,9 +90,7 @@ export default Vue.extend({
     text-transform: uppercase;
     width: 100%;
 
-    .col-30,
-    .col-70,
-    .col-100 {
+    [class*='col-'] {
       align-items: center;
       display: flex;
       justify-content: center;
