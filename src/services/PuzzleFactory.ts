@@ -1,6 +1,6 @@
 import { Rule } from '../../types'
 
-export const generateRules = (rulesLength: number): Array<Rule> => {
+export const generateRules = (rulesLength: number, rulesQuantity: number): Array<Rule> => {
   const createAnswerBase = () => {
     return createUniqueNumbersKey()
   }
@@ -19,7 +19,7 @@ export const generateRules = (rulesLength: number): Array<Rule> => {
   const createRulesBase = (): Array<Rule> => {
     const rules: Array<Rule> = []
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < rulesQuantity; i++) {
       rules.push({
         correctNumbers: 0,
         correctPositions: 0,

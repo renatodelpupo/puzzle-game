@@ -39,7 +39,8 @@ export default Vue.extend({
     correctAnswers: 0 as number,
     currentRules: [] as Array<Rule>,
     nextRules: [] as Array<Rule>,
-    rulesLength: 3
+    rulesLength: 3,
+    rulesQuantity: 6
   }),
 
   computed: {
@@ -84,8 +85,12 @@ export default Vue.extend({
     },
 
     generateNextRules() {
-      this.nextRules = generateRules(this.rulesLength)
+      this.nextRules = this.generateRules()
       localStorage.setItem('nextRules', JSON.stringify(this.nextRules))
+    },
+
+    generateRules() {
+      return generateRules(this.rulesLength, this.rulesQuantity)
     },
 
     nextGame() {
@@ -103,14 +108,14 @@ export default Vue.extend({
       if (this.persistedCurrentRules) {
         this.currentRules = this.persistedCurrentRules
       } else {
-        this.currentRules = generateRules(this.rulesLength)
+        this.currentRules = this.generateRules()
         localStorage.setItem('currentRules', JSON.stringify(this.currentRules))
       }
 
       if (this.persistedNextRules) {
         this.nextRules = this.persistedNextRules
       } else {
-        this.nextRules = generateRules(this.rulesLength)
+        this.nextRules = this.generateRules()
         localStorage.setItem('nextRules', JSON.stringify(this.nextRules))
       }
     }
