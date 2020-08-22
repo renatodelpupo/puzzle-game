@@ -34,14 +34,9 @@ export const generateRules = (rulesLength: number, rulesQuantity: number): Array
       return true
     }
 
-    // eslint-disable-next-line space-in-parens
-    for (let i = 0; i < rulesQuantity; ) {
+    while (rulesBaseKeys.length < rulesQuantity) {
       const newNumbersKey = createUniqueNumbersKey()
-
-      if (newNumbersKeyIsUnique(newNumbersKey)) {
-        rulesBaseKeys.push(newNumbersKey)
-        i++
-      }
+      if (newNumbersKeyIsUnique(newNumbersKey)) rulesBaseKeys.push(newNumbersKey)
     }
 
     return rulesBaseKeys
@@ -49,15 +44,15 @@ export const generateRules = (rulesLength: number, rulesQuantity: number): Array
 
   const createRulesBase = (): Array<RuleInterface> => {
     const rulesBaseKeys: Array<Array<number>> = createRulesBaseKeys()
-    const rules: Array<RuleInterface> = []
+    const rules: Array<RuleInterface> = Array<RuleInterface>(rulesQuantity).fill({
+      correctNumbers: 0,
+      correctPositions: 0,
+      numbers: []
+    })
 
-    for (let i = 0; i < rulesQuantity; i++) {
-      rules.push({
-        correctNumbers: 0,
-        correctPositions: 0,
-        numbers: rulesBaseKeys[i]
-      })
-    }
+    rules.forEach((rule, i) => {
+      rule.numbers = rulesBaseKeys[i]
+    })
 
     return rules
   }
