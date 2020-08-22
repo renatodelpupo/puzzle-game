@@ -1,20 +1,18 @@
 <template>
-  <div v-if="rules" class="rule-list">
-    <div v-for="(rule, index) in rules" :key="setKey(index, rule)" class="rule-box">
-      <div class="rule-number-wrap">
-        <span v-for="number in rule.numbers" :key="number.toString()" class="rule-number" v-text="number" />
-      </div>
-      <span class="rule-description" v-text="setDescription(rule)" />
-    </div>
+  <div v-if="rules" class="rules">
+    <rule v-for="(rule, index) in rules" :key="setKey(index, rule)" :rule="rule" />
   </div>
 </template>
 
 <script lang="ts">
+import Rule from '../atoms/Rule.vue'
 import { RuleInterface } from '../../../types'
 import Vue from 'vue'
 
 export default Vue.extend({
   name: 'Rules',
+
+  components: { Rule },
 
   props: {
     rules: {
@@ -24,83 +22,19 @@ export default Vue.extend({
   },
 
   methods: {
-    setDescription(rule: RuleInterface): string {
-      const descriptionNumbers = () => {
-        if (rule.correctNumbers === 0) return 'No correct numbers.'
-        if (rule.correctNumbers === 1) return 'One correct number'
-        if (rule.correctNumbers === 2) return 'Two correct numbers'
-        if (rule.correctNumbers === 3) return 'Three correct numbers'
-        if (rule.correctNumbers === 4) return 'Four correct numbers'
-
-        return ''
-      }
-
-      const descriptionPositions = () => {
-        if (!rule.correctNumbers) return ''
-        if (rule.correctPositions === rule.correctNumbers) return ' and in the right place.'
-        if (rule.correctPositions === 0) return ', but in the wrong place.'
-        if (rule.correctPositions === 1) return ', but only one in the right place.'
-        if (rule.correctPositions === 2) return ', but only two in the right place.'
-        if (rule.correctPositions === 3) return ', but only three in the right place.'
-
-        return ''
-      }
-
-      return `${descriptionNumbers()}${descriptionPositions()}`
-    },
-
     setKey(index: number, rule: RuleInterface) {
-      return rule.numbers.toString() + index
+      return rule.numbers.toString().replace(/,/g, '') + index
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
-.rule {
-  &-box {
-    align-items: center;
-    background-color: #252525;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    margin: 5px 0;
-    padding: 10px;
-    width: calc(50% - 5px);
-  }
-
-  &-description {
-    line-height: 1.2;
-    text-align: center;
-  }
-
-  &-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    overflow: hidden auto;
-    margin: 20px;
-  }
-
-  &-number {
-    background-color: #383838;
-    border-radius: 5px;
-    display: inline-flex;
-    margin: 0 5px;
-    padding: 5px 6px;
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &-wrap {
-      display: flex;
-      margin-bottom: 10px;
-    }
-  }
+.rules {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: hidden auto;
+  margin: 20px;
 }
 </style>
