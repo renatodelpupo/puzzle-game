@@ -12,14 +12,14 @@ const createUniqueNumbersArray = (length: number): Array<number> => {
 }
 
 const createUniqueRules = (rulesLength: number, rulesQuantity: number): Array<Array<number>> => {
-  const rulesNumbers: Array<Array<number>> = []
+  const uniqueRules: Array<Array<number>> = []
 
-  while (rulesNumbers.length < rulesQuantity) {
+  while (uniqueRules.length < rulesQuantity) {
     const newRuleNumbers = createUniqueNumbersArray(rulesLength)
-    if (!hasExistentSimilarArray(newRuleNumbers, rulesNumbers)) rulesNumbers.push(newRuleNumbers)
+    if (!hasExistentSimilarArray(newRuleNumbers, uniqueRules)) uniqueRules.push(newRuleNumbers)
   }
 
-  return rulesNumbers
+  return uniqueRules
 }
 
 const getSimilarNumbersCount = (a: Array<number>, b: Array<number>): number => {
