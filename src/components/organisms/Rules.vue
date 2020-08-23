@@ -1,6 +1,6 @@
 <template>
   <div v-if="rules" class="rules">
-    <rule v-for="(rule, index) in rules" :key="setKey(index, rule)" :rule="rule" />
+    <rule v-for="rule in rules" :key="setKey(rule)" :rule="rule" />
   </div>
 </template>
 
@@ -22,8 +22,8 @@ export default Vue.extend({
   },
 
   methods: {
-    setKey(index: number, rule: RuleInterface) {
-      return rule.numbers.toString().replace(/,/g, '') + index
+    setKey(rule: RuleInterface) {
+      return rule.numbers.toString().replace(/,/g, '')
     }
   }
 })
