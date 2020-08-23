@@ -41,7 +41,7 @@ const getSimilarPositionsCount = (a: Array<number>, b: Array<number>): number =>
   return similarPositions.length
 }
 
-const hasExistentSimilarArray = (currentArray: Array<number>, accumulatorArray: Array<Array<number>>): Boolean => {
+const hasExistentSimilarArray = (currentArray: Array<number>, accumulatorArray: Array<Array<number>>): boolean => {
   if (!accumulatorArray.length) {
     return false
   }
