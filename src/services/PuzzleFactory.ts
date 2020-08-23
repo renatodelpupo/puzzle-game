@@ -11,12 +11,21 @@ const createUniqueNumbersArray = (length: number): Array<number> => {
   return uniqueNumbersArray
 }
 
-const createUniqueRules = (rulesLength: number, rulesQuantity: number): Array<Array<number>> => {
+const createUniqueRules = (
+  answerReference: Array<number>,
+  rulesLength: number,
+  rulesQuantity: number
+): Array<Array<number>> => {
   const uniqueRules: Array<Array<number>> = []
 
   while (uniqueRules.length < rulesQuantity) {
     const newRuleNumbers = createUniqueNumbersArray(rulesLength)
-    if (!hasExistentSimilarArray(newRuleNumbers, uniqueRules)) uniqueRules.push(newRuleNumbers)
+    if (
+      !isAnswer(answerReference, newRuleNumbers, rulesLength) &&
+      !hasExistentSimilarArray(newRuleNumbers, uniqueRules)
+    ) {
+      uniqueRules.push(newRuleNumbers)
+    }
   }
 
   return uniqueRules
@@ -50,10 +59,16 @@ const hasExistentSimilarArray = (currentArray: Array<number>, accumulatorArray: 
   return similarArrayFounded
 }
 
+const isAnswer = (answer: Array<number>, rule: Array<number>, rulesLength: number): boolean => {
+  const correctPositions = getSimilarPositionsCount(answer, rule)
+
+  return correctPositions === rulesLength
+}
+
 export const createRules = (rulesLength: number, rulesQuantity: number): Array<RuleInterface> => {
   const answerReference: Array<number> = createUniqueNumbersArray(rulesLength)
   const rules: Array<RuleInterface> = []
-  const rulesNumbers: Array<Array<number>> = createUniqueRules(rulesLength, rulesQuantity)
+  const rulesNumbers: Array<Array<number>> = createUniqueRules(answerReference, rulesLength, rulesQuantity)
 
   while (rules.length < rulesQuantity) {
     rules.push({
