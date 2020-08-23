@@ -14,23 +14,9 @@ const createUniqueNumbersArray = (length: number): Array<number> => {
 const createUniqueRules = (rulesLength: number, rulesQuantity: number): Array<Array<number>> => {
   const rulesNumbers: Array<Array<number>> = []
 
-  const ruleNumbersIsUnique = (newRuleNumbers: Array<number>) => {
-    rulesNumbers.forEach((rule) => {
-      if (!rulesNumbers.length) return true
-
-      const similarNumbers = getSimilarNumbersCount(newRuleNumbers, rule)
-
-      if (similarNumbers === rulesLength) {
-        return false
-      }
-    })
-
-    return true
-  }
-
   while (rulesNumbers.length < rulesQuantity) {
     const newRuleNumbers = createUniqueNumbersArray(rulesLength)
-    if (ruleNumbersIsUnique(newRuleNumbers)) rulesNumbers.push(newRuleNumbers)
+    if (!hasExistentSimilarArray(newRuleNumbers, rulesNumbers)) rulesNumbers.push(newRuleNumbers)
   }
 
   return rulesNumbers
@@ -44,6 +30,24 @@ const getSimilarNumbersCount = (a: Array<number>, b: Array<number>): number => {
 const getSimilarPositionsCount = (a: Array<number>, b: Array<number>): number => {
   const similarPositions = b.filter((number, numberIndex) => a.includes(number) && a.indexOf(number) === numberIndex)
   return similarPositions.length
+}
+
+const hasExistentSimilarArray = (currentArray: Array<number>, accumulatorArray: Array<Array<number>>): Boolean => {
+  if (!accumulatorArray.length) {
+    return false
+  }
+
+  let similarArrayFounded = false
+
+  accumulatorArray.forEach((accumulatorArrayItem) => {
+    const similarNumbers = getSimilarNumbersCount(currentArray, accumulatorArrayItem)
+
+    if (similarNumbers === currentArray.length) {
+      similarArrayFounded = true
+    }
+  })
+
+  return similarArrayFounded
 }
 
 export const createRules = (rulesLength: number, rulesQuantity: number): Array<RuleInterface> => {
