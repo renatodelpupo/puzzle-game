@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { generateRules } from '../../services/PuzzleFactory'
+import { createRules } from '../../services/PuzzleFactory'
 import { RuleInterface } from '../../../types'
 import Answer from '../atoms/Answer.vue'
 import Footer from '../organisms/Footer.vue'
@@ -85,12 +85,12 @@ export default Vue.extend({
     },
 
     generateNextRules() {
-      this.nextRules = this.generateRules()
+      this.nextRules = this.createRules()
       localStorage.setItem('nextRules', JSON.stringify(this.nextRules))
     },
 
-    generateRules() {
-      return generateRules(this.rulesLength, this.rulesQuantity)
+    createRules() {
+      return createRules(this.rulesLength, this.rulesQuantity)
     },
 
     nextGame() {
@@ -108,14 +108,14 @@ export default Vue.extend({
       if (this.persistedCurrentRules) {
         this.currentRules = this.persistedCurrentRules
       } else {
-        this.currentRules = this.generateRules()
+        this.currentRules = this.createRules()
         localStorage.setItem('currentRules', JSON.stringify(this.currentRules))
       }
 
       if (this.persistedNextRules) {
         this.nextRules = this.persistedNextRules
       } else {
-        this.nextRules = this.generateRules()
+        this.nextRules = this.createRules()
         localStorage.setItem('nextRules', JSON.stringify(this.nextRules))
       }
     }

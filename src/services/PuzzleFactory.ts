@@ -1,98 +1,75 @@
 import { RuleInterface } from '../../types'
 
-export const generateRules = (rulesLength: number, rulesQuantity: number): Array<RuleInterface> => {
-  const createAnswerBase = () => {
-    return createUniqueNumbersKey()
+const createUniqueRules = (length: number): Array<number> => {
+  const uniqueNumbersArray: Array<number> = []
+
+  while (uniqueNumbersArray.length < length) {
+    const r = Math.floor(Math.random() * 9)
+    if (!uniqueNumbersArray.includes(r)) uniqueNumbersArray.push(r)
   }
 
-  const createUniqueNumbersKey = () => {
-    const uniqueNumbers: Array<number> = []
+  return uniqueNumbersArray
+}
 
-    while (uniqueNumbers.length < rulesLength) {
-      const r = Math.floor(Math.random() * 9)
-      if (!uniqueNumbers.includes(r)) uniqueNumbers.push(r)
-    }
+const createUniqueNumbersRules = (rulesLength: number, rulesQuantity: number): Array<Array<number>> => {
+  const rulesNumbers: Array<Array<number>> = []
 
-    return uniqueNumbers
-  }
+  const ruleNumbersIsUnique = (newRuleNumbers: Array<number>) => {
+    rulesNumbers.forEach((rule) => {
+      if (!rulesNumbers.length) return true
 
-  const createRulesBaseKeys = (): Array<Array<number>> => {
-    const rulesBaseKeys: Array<Array<number>> = []
+      const similarNumbers = getSimilarNumbersCount(newRuleNumbers, rule)
 
-    const newNumbersKeyIsUnique = (newNumbersKey: Array<number>) => {
-      rulesBaseKeys.forEach((rule) => {
-        if (!rulesBaseKeys.length) return true
-
-        const equalNumbers = rule.filter((number: number) => newNumbersKey.includes(number))
-        const correctNumbers = equalNumbers.length
-
-        if (correctNumbers === rulesLength) {
-          return false
-        }
-      })
-
-      return true
-    }
-
-    while (rulesBaseKeys.length < rulesQuantity) {
-      const newNumbersKey = createUniqueNumbersKey()
-      if (newNumbersKeyIsUnique(newNumbersKey)) rulesBaseKeys.push(newNumbersKey)
-    }
-
-    return rulesBaseKeys
-  }
-
-  const createRulesBase = (): Array<RuleInterface> => {
-    const rulesBaseKeys: Array<Array<number>> = createRulesBaseKeys()
-    const rules: Array<RuleInterface> = Array<RuleInterface>(rulesQuantity).fill({
-      correctNumbers: 0,
-      correctPositions: 0,
-      numbers: []
+      if (similarNumbers === rulesLength) {
+        return false
+      }
     })
 
-    rules.forEach((rule, i) => {
-      rule.numbers = rulesBaseKeys[i]
-    })
-
-    return rules
+    return true
   }
 
-  const defineRulesMatches = (answerBase: Array<number>, rules: Array<RuleInterface>) => {
-    rules.forEach((rule) => {
-      const numbers: Array<number> = rule.numbers
-
-      const equalNumbers = numbers.filter((number) => answerBase.includes(number))
-      const equalPositions = numbers.filter(
-        (number, numberIndex) => answerBase.includes(number) && answerBase.indexOf(number) === numberIndex
-      )
-
-      rule.correctNumbers = equalNumbers.length
-      rule.correctPositions = equalPositions.length
-    })
-
-    return rules
+  while (rulesNumbers.length < rulesQuantity) {
+    const newRuleNumbers = createUniqueRules(rulesLength)
+    if (ruleNumbersIsUnique(newRuleNumbers)) rulesNumbers.push(newRuleNumbers)
   }
 
-  const _answerBase = createAnswerBase()
-  const _rulesBase = createRulesBase()
-  const rules = defineRulesMatches(_answerBase, _rulesBase)
+  return rulesNumbers
+}
+
+const getSimilarNumbersCount = (a: Array<number>, b: Array<number>): number => {
+  const similarNumbers = b.filter((number) => a.includes(number))
+  return similarNumbers.length
+}
+
+const getSimilarPositionsCount = (a: Array<number>, b: Array<number>): number => {
+  const similarPositions = b.filter((number, numberIndex) => a.includes(number) && a.indexOf(number) === numberIndex)
+  return similarPositions.length
+}
+
+export const createRules = (rulesLength: number, rulesQuantity: number): Array<RuleInterface> => {
+  const answerReference: Array<number> = createUniqueRules(rulesLength)
+  const rules: Array<RuleInterface> = []
+  const rulesNumbers: Array<Array<number>> = createUniqueNumbersRules(rulesLength, rulesQuantity)
+
+  while (rules.length < rulesQuantity) {
+    rules.push({
+      correctNumbers: getSimilarNumbersCount(answerReference, rulesNumbers[rules.length]),
+      correctPositions: getSimilarPositionsCount(answerReference, rulesNumbers[rules.length]),
+      numbers: rulesNumbers[rules.length]
+    })
+  }
 
   return rules
 }
 
-export const testRules = (attempt: Array<number>, rules: Array<RuleInterface>) => {
+export const testRules = (attempt: Array<number>, rules: Array<RuleInterface>): boolean => {
   let hasError = null
 
   rules.forEach((rule) => {
     const numbers: Array<number> = rule.numbers
 
-    const verifyNumbers = attempt.filter((attemptItem) => numbers.includes(attemptItem))
-    const verifyPositions = attempt.filter(
-      (attemptItem, attemptIndex) => numbers.includes(attemptItem) && numbers.indexOf(attemptItem) === attemptIndex
-    )
-
-    const numbersCorrect = verifyNumbers.length === rule.correctNumbers
-    const positionsCorrect = verifyPositions.length === rule.correctPositions
+    const numbersCorrect = getSimilarNumbersCount(numbers, attempt) === rule.correctNumbers
+    const positionsCorrect = getSimilarPositionsCount(numbers, attempt) === rule.correctPositions
 
     if (!numbersCorrect || !positionsCorrect) hasError = true
   })
