@@ -1,6 +1,6 @@
 import { RuleInterface } from '../../types'
 
-const createUniqueRules = (length: number): Array<number> => {
+const createUniqueNumbersArray = (length: number): Array<number> => {
   const uniqueNumbersArray: Array<number> = []
 
   while (uniqueNumbersArray.length < length) {
@@ -11,7 +11,7 @@ const createUniqueRules = (length: number): Array<number> => {
   return uniqueNumbersArray
 }
 
-const createUniqueNumbersRules = (rulesLength: number, rulesQuantity: number): Array<Array<number>> => {
+const createUniqueRules = (rulesLength: number, rulesQuantity: number): Array<Array<number>> => {
   const rulesNumbers: Array<Array<number>> = []
 
   const ruleNumbersIsUnique = (newRuleNumbers: Array<number>) => {
@@ -29,7 +29,7 @@ const createUniqueNumbersRules = (rulesLength: number, rulesQuantity: number): A
   }
 
   while (rulesNumbers.length < rulesQuantity) {
-    const newRuleNumbers = createUniqueRules(rulesLength)
+    const newRuleNumbers = createUniqueNumbersArray(rulesLength)
     if (ruleNumbersIsUnique(newRuleNumbers)) rulesNumbers.push(newRuleNumbers)
   }
 
@@ -47,9 +47,9 @@ const getSimilarPositionsCount = (a: Array<number>, b: Array<number>): number =>
 }
 
 export const createRules = (rulesLength: number, rulesQuantity: number): Array<RuleInterface> => {
-  const answerReference: Array<number> = createUniqueRules(rulesLength)
+  const answerReference: Array<number> = createUniqueNumbersArray(rulesLength)
   const rules: Array<RuleInterface> = []
-  const rulesNumbers: Array<Array<number>> = createUniqueNumbersRules(rulesLength, rulesQuantity)
+  const rulesNumbers: Array<Array<number>> = createUniqueRules(rulesLength, rulesQuantity)
 
   while (rules.length < rulesQuantity) {
     rules.push({
