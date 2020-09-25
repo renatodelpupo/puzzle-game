@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "commit": "npx git-cz",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint",
+    "commit": "npx git-cz"
   },
   "dependencies": {
     "core-js": "^3.6.4",
@@ -16,15 +17,18 @@
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^9.1.2",
+    "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "@vue/cli-plugin-babel": "^4.3.0",
     "@vue/cli-plugin-eslint": "^4.3.0",
     "@vue/cli-plugin-pwa": "^4.3.0",
     "@vue/cli-plugin-typescript": "^4.3.1",
+    "@vue/cli-plugin-unit-jest": "^4.5.6",
     "@vue/cli-service": "^4.3.0",
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/eslint-config-typescript": "^5.0.2",
+    "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^6.7.2",
@@ -39,6 +43,11 @@
     "typescript": "~3.8.3",
     "vue-template-compiler": "^2.6.11"
   },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
@@ -47,10 +56,5 @@
       "vue-cli-service lint",
       "git add"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
