@@ -13,6 +13,10 @@ export default Vue.extend({
 
   components: {
     Home
+  },
+
+  created() {
+    this.$i18n.locale = navigator.language?.substring(0, 2)
   }
 })
 </script>
