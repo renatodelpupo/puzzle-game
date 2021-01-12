@@ -23,24 +23,14 @@ export default {
   methods: {
     setDescription(rule: RuleInterface): string {
       const descriptionNumbers = () => {
-        if (rule.correctNumbers === 0) return this.$t('correctNumbers0')
-        if (rule.correctNumbers === 1) return this.$t('correctNumbers1')
-        if (rule.correctNumbers === 2) return this.$t('correctNumbers2')
-        if (rule.correctNumbers === 3) return this.$t('correctNumbers3')
-        if (rule.correctNumbers === 4) return this.$t('correctNumbers4')
-
-        return ''
+        return this.$t(`correctNumbers[${rule.correctNumbers}]`) || ''
       }
 
       const descriptionPositions = () => {
         if (!rule.correctNumbers) return ''
-        if (rule.correctPositions === rule.correctNumbers) return this.$t('correctPositionsAll')
-        if (rule.correctPositions === 0) return this.$t('correctPositions0')
-        if (rule.correctPositions === 1) return this.$t('correctPositions1')
-        if (rule.correctPositions === 2) return this.$t('correctPositions2')
-        if (rule.correctPositions === 3) return this.$t('correctPositions3')
+        if (rule.correctPositions === rule.correctNumbers) return this.$t('correctPositions["all"]')
 
-        return ''
+        return this.$t(`correctPositions[${rule.correctPositions}]`) || ''
       }
 
       return `${descriptionNumbers()}${descriptionPositions()}`
@@ -52,16 +42,20 @@ export default {
 <i18n>
 {
   "en": {
-    "correctNumbers0": "No correct numbers.",
-    "correctNumbers1": "One correct number",
-    "correctNumbers2": "Two correct numbers",
-    "correctNumbers3": "Three correct numbers",
-    "correctNumbers4": "Four correct numbers",
-    "correctPositions0": ", but in the wrong place.",
-    "correctPositions1": ", but only one in the right place.",
-    "correctPositions2": ", but only two in the right place.",
-    "correctPositions3": ", but only three in the right place.",
-    "correctPositionsAll": " and in the right place."
+    "correctNumbers": {
+      "0": "No correct numbers.",
+      "1": "One correct number",
+      "2": "Two correct numbers",
+      "3": "Three correct numbers",
+      "4": "Four correct numbers"
+    },
+    "correctPositions": {
+      "0": ", but in the wrong place.",
+      "1": ", but only one in the right place.",
+      "2": ", but only two in the right place.",
+      "3": ", but only three in the right place.",
+      "all": " and in the right place."
+    }
   }
 }
 </i18n>
