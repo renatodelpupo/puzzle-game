@@ -10,9 +10,9 @@
     "commit": "npx git-cz"
   },
   "dependencies": {
-    "core-js": "^3.6.4",
-    "register-service-worker": "^1.7.1",
-    "vue": "^2.6.11"
+    "core-js": "^3.8.2",
+    "register-service-worker": "^1.7.2",
+    "vue": "^2.6.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
@@ -20,29 +20,29 @@
     "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
-    "@vue/cli-plugin-babel": "^4.3.0",
-    "@vue/cli-plugin-eslint": "^4.3.0",
-    "@vue/cli-plugin-pwa": "^4.3.0",
-    "@vue/cli-plugin-typescript": "^4.3.1",
-    "@vue/cli-plugin-unit-jest": "^4.5.6",
-    "@vue/cli-service": "^4.3.0",
+    "@vue/cli-plugin-babel": "^4.5.10",
+    "@vue/cli-plugin-eslint": "^4.5.10",
+    "@vue/cli-plugin-pwa": "^4.5.10",
+    "@vue/cli-plugin-typescript": "^4.5.10",
+    "@vue/cli-plugin-unit-jest": "^4.5.10",
+    "@vue/cli-service": "^4.5.10",
     "@vue/eslint-config-standard": "^5.1.2",
-    "@vue/eslint-config-typescript": "^5.0.2",
-    "@vue/test-utils": "^1.0.3",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "@vue/test-utils": "^1.1.2",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.3.0",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-vue": "^6.2.2",
     "lint-staged": "^9.5.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "typescript": "~3.8.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   },
   "config": {
     "commitizen": {
