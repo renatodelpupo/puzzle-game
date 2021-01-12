@@ -56,6 +56,22 @@ export default {
       "3": ", but only three in the right place.",
       "all": " and in the right place."
     }
+  },
+  "pt": {
+    "correctNumbers": {
+      "0": "Nenhum número correto.",
+      "1": "Um número correto",
+      "2": "Dois números corretos",
+      "3": "Três números corretos",
+      "4": "Quatro números corretos"
+    },
+    "correctPositions": {
+      "0": ", mas no lugar errado.",
+      "1": ", mas só um no lugar certo.",
+      "2": ", mas só dois no lugar certo.",
+      "3": ", mas só três no lugar certo.",
+      "all": " e no lugar certo."
+    }
   }
 }
 </i18n>
