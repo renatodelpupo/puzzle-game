@@ -1,11 +1,11 @@
 <template>
   <footer class="app-footer">
     <div v-if="status === 'success'" class="app-footer-success">
-      <div class="col-70">Correct 🎉</div>
-      <div class="col-30" @click="next()">Next <span class="icon-arrow">❯</span></div>
+      <div class="col-70">{{ $t('correct') }} 🎉</div>
+      <div class="col-30" @click="next()">{{ $t('next') }} <span class="icon-arrow">❯</span></div>
     </div>
     <div v-else-if="status === 'failure'" class="app-footer-failure">
-      <div class="col-100">Wrong 😟</div>
+      <div class="col-100">{{ $t('wrong') }} 😟</div>
     </div>
     <div v-else class="app-footer-default">
       <div class="col-70">
@@ -14,7 +14,7 @@
           <span lass="app-footer-streak-text" v-text="puzzleCount" />
         </div>
       </div>
-      <div class="col-30" @click="test()">Submit <span class="icon-arrow">❯</span></div>
+      <div class="col-30" @click="test()">{{ $t('submit') }} <span class="icon-arrow">❯</span></div>
     </div>
   </footer>
 </template>
@@ -82,6 +82,23 @@ export default Vue.extend({
   }
 })
 </script>
+
+<i18n>
+{
+  "en": {
+    "correct": "Correct",
+    "next": "Next",
+    "submit": "Submit",
+    "wrong": "Wrong"
+  },
+  "pt": {
+    "correct": "Correto",
+    "next": "Próximo",
+    "submit": "Enviar",
+    "wrong": "Errado"
+  }
+}
+</i18n>
 
 <style lang="scss" scoped>
 .app-footer {
