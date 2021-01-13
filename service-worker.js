@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.237caa1ce5697dee7d7544c10e4035d3.js"
+  "/precache-manifest.f753fbd8d85e90ff63bcf61ed6dd8216.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "solve-it"});
