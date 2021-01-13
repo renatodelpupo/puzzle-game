@@ -3,14 +3,16 @@
     <div class="rule-numbers">
       <span v-for="number in rule.numbers" class="rule-number" :key="number.toString()" v-text="number.toString()" />
     </div>
-    <span class="rule-description" v-text="setDescription(rule, $t)" />
+    <span class="rule-description" v-text="ruleDescription" />
   </div>
 </template>
 
 <script lang="ts">
 import { RuleInterface } from '../../../types'
+import { TranslateResult } from 'vue-i18n'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'Rule',
 
   props: {
@@ -20,23 +22,25 @@ export default {
     }
   },
 
-  methods: {
-    setDescription(rule: RuleInterface, i18n: Function): string {
-      const descriptionNumbers = () => {
-        return i18n(`correctNumbers[${rule.correctNumbers}]`) || ''
+  computed: {
+    ruleDescription(): string {
+      const descriptionNumbers: TranslateResult = this.$t(`correctNumbers[${this.rule.correctNumbers}]`) || ''
+      let descriptionPositions: TranslateResult = ''
+
+      if (this.rule.correctNumbers) {
+        const allCorrectPositions = this.rule.correctPositions === this.rule.correctNumbers
+
+        if (allCorrectPositions) {
+          descriptionPositions = this.$t('correctPositions["all"]')
+        } else {
+          descriptionPositions = this.$t(`correctPositions[${this.rule.correctPositions}]`)
+        }
       }
 
-      const descriptionPositions = () => {
-        if (!rule.correctNumbers) return ''
-        if (rule.correctPositions === rule.correctNumbers) return i18n('correctPositions["all"]')
-
-        return i18n(`correctPositions[${rule.correctPositions}]`) || ''
-      }
-
-      return `${descriptionNumbers()}${descriptionPositions()}`
+      return `${descriptionNumbers}${descriptionPositions}`
     }
   }
-}
+})
 </script>
 
 <i18n>
