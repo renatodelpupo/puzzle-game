@@ -3,7 +3,7 @@
     <div class="rule-numbers">
       <span v-for="number in rule.numbers" class="rule-number" :key="number.toString()" v-text="number.toString()" />
     </div>
-    <span class="rule-description" v-text="setDescription(rule)" />
+    <span class="rule-description" v-text="setDescription(rule, $t)" />
   </div>
 </template>
 
@@ -21,16 +21,16 @@ export default {
   },
 
   methods: {
-    setDescription(rule: RuleInterface): string {
+    setDescription(rule: RuleInterface, i18n: Function): string {
       const descriptionNumbers = () => {
-        return this.$t(`correctNumbers[${rule.correctNumbers}]`) || ''
+        return i18n(`correctNumbers[${rule.correctNumbers}]`) || ''
       }
 
       const descriptionPositions = () => {
         if (!rule.correctNumbers) return ''
-        if (rule.correctPositions === rule.correctNumbers) return this.$t('correctPositions["all"]')
+        if (rule.correctPositions === rule.correctNumbers) return i18n('correctPositions["all"]')
 
-        return this.$t(`correctPositions[${rule.correctPositions}]`) || ''
+        return i18n(`correctPositions[${rule.correctPositions}]`) || ''
       }
 
       return `${descriptionNumbers()}${descriptionPositions()}`
