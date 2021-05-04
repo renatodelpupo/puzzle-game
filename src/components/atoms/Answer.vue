@@ -1,12 +1,12 @@
 <template>
   <div class="answer-box">
-    <div class="answer-numbers">
-      <div v-for="(number, index) in attempt" :key="index" class="answer-number-wrap">
-        <div class="answer-up" @click="increase(index)"><span class="icon-arrow">❮</span></div>
+    <ul class="answer-numbers">
+      <li v-for="(number, index) in attempt" :key="index" class="answer-number-wrap">
+        <button class="answer-up" @click="increase(index)"><span class="icon-arrow">❮</span></button>
         <div class="answer-number" v-text="number" />
-        <div class="answer-down" @click="decrease(index)"><span class="icon-arrow">❯</span></div>
-      </div>
-    </div>
+        <button class="answer-down" @click="decrease(index)"><span class="icon-arrow">❯</span></button>
+      </li>
+    </ul>
   </div>
 </template>
 
