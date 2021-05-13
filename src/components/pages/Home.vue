@@ -125,19 +125,6 @@ export default Vue.extend({
 
 <style lang="scss">
 .app {
-  &-header {
-    background-color: #383838;
-    color: #ccc;
-    font-size: 18px;
-    padding: 10px 20px;
-
-    h1 {
-      font-size: 18px;
-      margin: 0;
-      text-align: center;
-    }
-  }
-
   &-home {
     display: flex;
     flex-direction: column;
