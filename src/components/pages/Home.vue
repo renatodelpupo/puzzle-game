@@ -1,6 +1,8 @@
 <template>
   <div class="app-home">
-    <Header theme="dark" title="Solve it!" />
+    <header class="app-header">
+      <h1>Solve it!</h1>
+    </header>
     <main class="app-main">
       <Rules :rules="currentRules" />
       <Answer :rules="currentRules" :rulesLength="rulesLength" @attempt="attemptUpdate" />
@@ -17,7 +19,6 @@
 
 <script lang="ts">
 import { createRules } from '../../services/PuzzleFactory'
-import { Header } from 'delp-ui'
 import { RuleInterface } from '../../../types'
 import Answer from '../atoms/Answer.vue'
 import Footer from '../organisms/Footer.vue'
@@ -30,7 +31,6 @@ export default Vue.extend({
   components: {
     Answer,
     Footer,
-    Header,
     Rules
   },
 
@@ -125,6 +125,19 @@ export default Vue.extend({
 
 <style lang="scss">
 .app {
+  &-header {
+    background-color: #383838;
+    color: #ccc;
+    font-size: 18px;
+    padding: 10px 20px;
+
+    h1 {
+      font-size: 18px;
+      margin: 0;
+      text-align: center;
+    }
+  }
+
   &-home {
     display: flex;
     flex-direction: column;
