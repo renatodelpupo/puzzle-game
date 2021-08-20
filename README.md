@@ -9,21 +9,26 @@
 ## Stack
 
 ### Code
+
 - CSS Grid, Flexbox
-- Sass
+- Sass SCSS
 - TypeScript
 - Vue 2
 
 ### Lint
+
 - Commitlint
 - ESLint
 
 ### Methodology
+
 - Atomic Design
 
 ### Plugins
+
 - Vue i18n
 - Vue PWA
 
 ### Test
+
 - Jest
