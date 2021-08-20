@@ -9,6 +9,7 @@
 ## Stack
 
 ### Code
+- CSS Grid, Flexbox
 - Sass
 - TypeScript
 - Vue 2

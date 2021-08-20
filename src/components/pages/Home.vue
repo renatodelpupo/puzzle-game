@@ -139,8 +139,8 @@ export default Vue.extend({
   }
 
   &-home {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     height: 100vh;
     overflow: hidden;
   }
@@ -151,6 +151,7 @@ export default Vue.extend({
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden auto;
+    padding: 20px;
   }
 }
 </style>

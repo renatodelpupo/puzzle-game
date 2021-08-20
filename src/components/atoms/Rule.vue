@@ -82,14 +82,13 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .rule {
-  align-items: center;
   background-color: #252525;
   border-radius: 5px;
-  display: flex;
+  display: grid;
   flex-direction: column;
-  margin: 5px 0;
+  gap: 10px;
+  grid-template-rows: auto 1fr;
   padding: 10px;
-  width: calc(50% - 5px);
 
   &-description {
     line-height: 1.2;
@@ -100,21 +99,14 @@ export default Vue.extend({
     background-color: #383838;
     border-radius: 5px;
     display: inline-flex;
-    margin: 0 5px;
-    padding: 5px 6px;
-
-    &:first-of-type {
-      margin-left: 0;
-    }
-
-    &:last-of-type {
-      margin-right: 0;
-    }
+    padding: 5px;
   }
 
   &-numbers {
-    display: flex;
-    margin-bottom: 10px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, auto);
+    justify-self: center;
   }
 }
 </style>

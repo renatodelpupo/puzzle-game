@@ -73,7 +73,6 @@ export default Vue.extend({
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 20px auto;
   }
 
   &-down,
@@ -95,10 +94,6 @@ export default Vue.extend({
     }
   }
 
-  &-down {
-    margin-top: 10px;
-  }
-
   &-number {
     align-items: center;
     background-color: #383838;
@@ -107,31 +102,21 @@ export default Vue.extend({
     font-size: 36px;
     height: 50px;
     justify-content: center;
-    margin: 5px 0;
-    width: 75px;
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
 
     &-wrap {
       align-items: center;
-      display: flex;
+      display: grid;
       flex-direction: column;
-      margin: 0 5px;
+      gap: 15px;
     }
   }
 
   &-numbers {
-    display: flex;
-  }
-
-  &-up {
-    margin-bottom: 10px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 75px);
+    margin: 0;
+    padding: 0;
   }
 }
 </style>

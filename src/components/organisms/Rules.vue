@@ -31,10 +31,9 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .rules {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
   overflow: hidden auto;
-  margin: 20px;
 }
 </style>
