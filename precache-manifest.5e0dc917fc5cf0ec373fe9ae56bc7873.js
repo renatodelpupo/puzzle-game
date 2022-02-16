@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ca7a6064d2f5e8a9b271",
-    "url": "/puzzle-game/css/app.18a1b86e.css"
+    "revision": "ff593c8e5dbccbca2630",
+    "url": "/puzzle-game/css/app.f0d0c03c.css"
   },
   {
-    "revision": "347c51d7c5ca33c8d8a3474e43f27724",
+    "revision": "9c40068fe81b1a12411b662d513d56cd",
     "url": "/puzzle-game/index.html"
   },
   {
-    "revision": "ca7a6064d2f5e8a9b271",
-    "url": "/puzzle-game/js/app.0ad17bc9.js"
+    "revision": "ff593c8e5dbccbca2630",
+    "url": "/puzzle-game/js/app.eccace50.js"
   },
   {
-    "revision": "3831e1e63e707a5291e7",
-    "url": "/puzzle-game/js/chunk-vendors.e7a6cef4.js"
+    "revision": "3da0c4434adf200e743e",
+    "url": "/puzzle-game/js/chunk-vendors.3ddb11cf.js"
   },
   {
     "revision": "ba42f8db286d0baa306d11e594f38910",
