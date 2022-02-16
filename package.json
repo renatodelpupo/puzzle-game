@@ -12,10 +12,10 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
-    "core-js": "^3.8.2",
+    "core-js": "^3.21.0",
     "register-service-worker": "^1.7.2",
-    "vue": "^2.6.12",
-    "vue-i18n": "^8.17.3"
+    "vue": "^2.6.14",
+    "vue-i18n": "^8.27.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
@@ -24,22 +24,22 @@
     "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
-    "@vue/cli-plugin-babel": "^4.5.10",
-    "@vue/cli-plugin-eslint": "^4.5.10",
-    "@vue/cli-plugin-pwa": "^4.5.10",
-    "@vue/cli-plugin-typescript": "^4.5.10",
-    "@vue/cli-plugin-unit-jest": "^4.5.10",
-    "@vue/cli-service": "^4.5.10",
+    "@vue/cli-plugin-babel": "^4.5.15",
+    "@vue/cli-plugin-eslint": "^4.5.15",
+    "@vue/cli-plugin-pwa": "^4.5.15",
+    "@vue/cli-plugin-typescript": "^4.5.15",
+    "@vue/cli-plugin-unit-jest": "^4.5.15",
+    "@vue/cli-service": "^4.5.15",
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/eslint-config-typescript": "^7.0.0",
-    "@vue/test-utils": "^1.1.2",
+    "@vue/test-utils": "^1.3.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.3.0",
-    "cz-conventional-changelog": "^3.2.0",
+    "babel-jest": "^26.6.3",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-vue": "^6.2.2",
     "lint-staged": "^9.5.0",
@@ -47,7 +47,7 @@
     "sass-loader": "^8.0.2",
     "typescript": "~3.8.3",
     "vue-cli-plugin-i18n": "~1.0.1",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.14"
   },
   "config": {
     "commitizen": {

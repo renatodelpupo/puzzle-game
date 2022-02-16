@@ -19,6 +19,7 @@
 
 - Commitlint
 - ESLint
+- Prettier
 
 ### Methodology
 
